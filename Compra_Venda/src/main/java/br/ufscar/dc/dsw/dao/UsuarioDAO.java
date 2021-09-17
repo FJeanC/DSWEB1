@@ -8,23 +8,26 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.ufscar.dc.dsw.domain.Usuario;
+import br.ufscar.dc.dsw.model.Usuario;
 
 public class UsuarioDAO extends GenericDAO {
 
     public void insert(Usuario usuario) {
 
-        String sql = "INSERT INTO Usuario (nome, login, senha, papel) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Usuario (email, senha, cpf, nome, telefone, sexo, datanasc, papel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);;
+            PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement = conn.prepareStatement(sql);
-            statement.setString(1, usuario.getNome());
-            statement.setString(2, usuario.getLogin());
-            statement.setString(3, usuario.getSenha());
-            statement.setString(4, usuario.getPapel());
+            statement.setString(1, usuario.getEmail());
+            statement.setString(2, usuario.getSenha());
+            statement.setString(3, usuario.getCpf());
+            statement.setString(4, usuario.getNome());
+            statement.setString(5, usuario.getTelefone());
+            statement.setString(6, usuario.getSexo());
+            statement.setString(7, usuario.getDatanasc());
+            statement.setString(8, usuario.getPapel());
             statement.executeUpdate();
 
             statement.close();
@@ -46,12 +49,16 @@ public class UsuarioDAO extends GenericDAO {
 
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                long id = resultSet.getLong("id");
-                String nome = resultSet.getString("nome");
-                String login = resultSet.getString("login");
+                int id = resultSet.getInt("id");
+                String email = resultSet.getString("email");
                 String senha = resultSet.getString("senha");
+                String cpf = resultSet.getString("cpf");
+                String nome = resultSet.getString("nome");
+                String telefone = resultSet.getString("telefone");
+                String sexo = resultSet.getString("sexo");
+                String datanasc = resultSet.getString("datanasc");
                 String papel = resultSet.getString("papel");
-                Usuario usuario = new Usuario(id, nome, login, senha, papel);
+                Usuario usuario = new Usuario(id, email, senha, cpf, nome, telefone, sexo, datanasc, papel);
                 listaUsuarios.add(usuario);
             }
 
@@ -71,7 +78,7 @@ public class UsuarioDAO extends GenericDAO {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setLong(1, usuario.getId());
+            statement.setInt(1, usuario.getId());
             statement.executeUpdate();
 
             statement.close();
@@ -81,16 +88,21 @@ public class UsuarioDAO extends GenericDAO {
     }
 
     public void update(Usuario usuario) {
-        String sql = "UPDATE Usuario SET nome = ?, login = ?, senha = ?, papel = ? WHERE id = ?";
+        String sql = "UPDATE Usuario SET email = ?, senha = ?, cpf = ?, nome = ?, telefone = ?, sexo = ?, datanasc = ?, papel = ? WHERE id = ?";
 
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setString(1, usuario.getNome());
-            statement.setString(2, usuario.getLogin());
-            statement.setString(3, usuario.getSenha());
-            statement.setString(4, usuario.getPapel());
+            statement.setString(1, usuario.getEmail());
+            statement.setString(2, usuario.getSenha());
+            statement.setString(3, usuario.getCpf());
+            statement.setString(4, usuario.getNome());
+            statement.setString(5, usuario.getTelefone());
+            statement.setString(6, usuario.getSexo());
+            statement.setString(7, usuario.getDatanasc());
+            statement.setString(8, usuario.getPapel());
+            statement.setInt(9, usuario.getId());
             statement.executeUpdate();
 
             statement.close();
@@ -112,12 +124,17 @@ public class UsuarioDAO extends GenericDAO {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                String nome = resultSet.getString("nome");
-                String login = resultSet.getString("login");
+                int idresult = resultSet.getInt("id");
+                String email = resultSet.getString("email");
                 String senha = resultSet.getString("senha");
+                String cpf = resultSet.getString("cpf");
+                String nome = resultSet.getString("nome");
+                String telefone = resultSet.getString("telefone");
+                String sexo = resultSet.getString("sexo");
+                String datanasc = resultSet.getString("datanasc");
                 String papel = resultSet.getString("papel");
 
-                usuario = new Usuario(id, nome, login, senha, papel);
+                usuario = new Usuario(idresult, email, senha, cpf, nome, telefone, sexo, datanasc, papel);
             }
 
             resultSet.close();
@@ -128,34 +145,4 @@ public class UsuarioDAO extends GenericDAO {
         }
         return usuario;
     }
-    
-    public Usuario getbyLogin(String login) {
-        Usuario usuario = null;
-
-        String sql = "SELECT * from Usuario WHERE login = ?";
-
-        try {
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
-
-            statement.setString(1, login);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-            	Long id = resultSet.getLong("id");
-                String nome = resultSet.getString("nome");
-                String senha = resultSet.getString("senha");
-                String papel = resultSet.getString("papel");
-
-                usuario = new Usuario(id, nome, login, senha, papel);
-            }
-
-            resultSet.close();
-            statement.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return usuario;
-    }
-    
 }
