@@ -27,7 +27,6 @@ CREATE TABLE Loja(
 );
 
 CREATE TABLE Carro(
-    FOREIGN KEY (cnpj) REFERENCES Loja(cnpj),
     placa VARCHAR(10) NOT NULL UNIQUE,
     modelo VARCHAR(64),
     chassi VARCHAR(32) NOT NULL UNIQUE,
@@ -35,6 +34,7 @@ CREATE TABLE Carro(
     km INTEGER,
     descricaocarro VARCHAR(256),
     valor FLOAT
+    FOREIGN KEY (idloja) REFERENCES Loja(idloja), ON DELETE CASCADE
 )
 
 CREATE TABLE Proposto(
