@@ -72,7 +72,7 @@ public class UsuarioDAO extends GenericDAO {
     }
 
     public void delete(Usuario usuario) {
-        String sql = "DELETE FROM Usuario where id = ?";
+        String sql = "DELETE FROM Usuario where idcliente = ?";
 
         try {
             Connection conn = this.getConnection();
@@ -88,7 +88,7 @@ public class UsuarioDAO extends GenericDAO {
     }
 
     public void update(Usuario usuario) {
-        String sql = "UPDATE Usuario SET email = ?, senha = ?, cpf = ?, nome = ?, telefone = ?, sexo = ?, datanasc = ?, papel = ? WHERE id = ?";
+        String sql = "UPDATE Usuario SET email = ?, senha = ?, cpf = ?, nome = ?, telefone = ?, sexo = ?, datanasc = ?, papel = ? WHERE idcliente = ?";
 
         try {
             Connection conn = this.getConnection();
@@ -115,7 +115,7 @@ public class UsuarioDAO extends GenericDAO {
     public Usuario getbyID(Long id) {
         Usuario usuario = null;
 
-        String sql = "SELECT * from Usuario WHERE id = ?";
+        String sql = "SELECT * from Usuario WHERE idcliente = ?";
 
         try {
             Connection conn = this.getConnection();

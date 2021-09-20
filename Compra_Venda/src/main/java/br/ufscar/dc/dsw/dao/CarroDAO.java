@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.ufscar.dc.dsw.domain.Carro;
+import br.ufscar.dc.dsw.model.Carro;
 
 public class CarroDAO extends GenericDAO {
 
