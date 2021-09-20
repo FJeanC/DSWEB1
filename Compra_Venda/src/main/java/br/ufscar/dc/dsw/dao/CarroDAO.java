@@ -8,13 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.ufscar.dc.dsw.domain.Carro;
+import br.ufscar.dc.dsw.model.Carro;
 
 public class CarroDAO extends GenericDAO {
 
-    public void insert(Carro carro) {
+    public void insertCar(Carro carro) {
 
-        String sql = "INSERT INTO Carro (placa, modelo,chassi, ano, km, descricaocarro, valor,id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Carro (placa, modelo,chassi, ano, km, descricaocarro, valor,idloja) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             Connection conn = this.getConnection();
@@ -27,7 +27,7 @@ public class CarroDAO extends GenericDAO {
             statement.setInt(5, carro.getKm());
             statement.setString(6, carro.getDescricao());
             statement.setFloat(7, carro.getValor());
-            statement.setInt(8, carro.getId());
+            statement.setInt(8, carro.getIdloja());
             statement.executeUpdate();
 
             statement.close();
@@ -37,7 +37,7 @@ public class CarroDAO extends GenericDAO {
         }
     }
 
-    public List<Carro> getAll() {
+    public List<Carro> getAllCars() {
 
         List<Carro> listaCarro = new ArrayList<>();
 
@@ -49,20 +49,19 @@ public class CarroDAO extends GenericDAO {
 
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
                 String placa = resultSet.getString("placa");
                 String modelo = resultSet.getString("modelo");
                 String chassi = resultSet.getString("chassi");
                 int ano = resultSet.getInt("ano");
-                float valor = resultSet.getFloat("valor"); //?
-                String descricaocarro = resultSet.getString("descricao");
                 int km = resultSet.getInt("km");
-                Carro carro = new Carro(placa, modelo,chassi, ano, km, descricaocarro, valor,id);
+                String descricaocarro = resultSet.getString("descricao");
+                float valor = resultSet.getFloat("valor");
+                int idloja = resultSet.getInt("idloja");
+                Carro carro = new Carro(placa, modelo,chassi, ano, km, descricaocarro, valor,idloja);
                 listaCarro.add(carro);
-                
+
             }
             
-
             resultSet.close();
             statement.close();
             conn.close();
@@ -72,14 +71,14 @@ public class CarroDAO extends GenericDAO {
         return listaCarro;
     }
 
-    public void delete(Carro carro) {
+    public void deleteCar(Carro carro) {
         String sql = "DELETE FROM Carro where placa = ?";
 
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setInt(1, carro.getId());
+            statement.setString(1, carro.getPlaca());
             statement.executeUpdate();
 
             statement.close();
@@ -88,8 +87,8 @@ public class CarroDAO extends GenericDAO {
         }
     }
 
-    public void update(Carro carro) {
-        String sql = "UPDATE Carro SET placa = ?, modelo = ?, chassi = ?, ano = ?, km = ?, descricaocarro = ?, valor = ?, id = ? WHERE placa = ?";
+    public void updateCar(Carro carro) {
+        String sql = "UPDATE Carro SET placa = ?, modelo = ?, chassi = ?, ano = ?, km = ?, descricaocarro = ?, valor = ?, idloja = ? WHERE placa = ?";
 
         try {
             Connection conn = this.getConnection();
@@ -102,7 +101,10 @@ public class CarroDAO extends GenericDAO {
             statement.setInt(5, carro.getKm());
             statement.setString(6, carro.getDescricao());
             statement.setFloat(7, carro.getValor());
-            statement.setInt(8, carro.getId());
+            statement.setInt(8, carro.getIdloja());
+
+            //PRECISO DISSO?
+            statement.setString(9, carro.getPlaca());
             
             statement.executeUpdate();
 
@@ -113,29 +115,29 @@ public class CarroDAO extends GenericDAO {
         }
     }
 
-    public Carro getbyID(Long id) {
-        Carro carro = null;
+    public Carro getbyPlaca(String placa) {
 
+        Carro carro = null;
         String sql = "SELECT * from Carro WHERE placa = ?";
 
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setLong(1, id);
+            statement.setString(1, placa);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
 
-                int id = resultSet.getInt("id");
-                String placa = resultSet.getString("placa");
+                String placa_carro = resultSet.getString("placa");
                 String modelo = resultSet.getString("modelo");
                 String chassi = resultSet.getString("chassi");
                 int ano = resultSet.getInt("ano");
-                float valor = resultSet.getFloat("valor"); //?
-                String descricaocarro = resultSet.getString("descricao");
                 int km = resultSet.getInt("km");
+                String descricaocarro = resultSet.getString("descricao");
+                float valor = resultSet.getFloat("valor");
+                int idloja = resultSet.getInt("idloja");
 
-                carro = new Carro(placa, modelo,chassi, ano, km, descricaocarro, valor,id);
+                carro = new Carro(placa_carro, modelo,chassi, ano, km, descricaocarro, valor,idloja);
             }
 
             resultSet.close();
