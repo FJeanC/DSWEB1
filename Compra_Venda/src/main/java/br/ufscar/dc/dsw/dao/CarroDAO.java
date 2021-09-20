@@ -8,13 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.ufscar.dc.dsw.model.Carro;
+import br.ufscar.dc.dsw.domain.Carro;
 
 public class CarroDAO extends GenericDAO {
 
     public void insert(Carro carro) {
 
-        String sql = "INSERT INTO Carro (placa, modelo,chassi, ano, valor, descricaocarro, km,id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Carro (placa, modelo,chassi, ano, km, descricaocarro, valor,id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             Connection conn = this.getConnection();
@@ -24,9 +24,9 @@ public class CarroDAO extends GenericDAO {
             statement.setString(2, carro.getModelo());
             statement.setString(3, carro.getChassi());
             statement.setInt(4, carro.getAno());
-            statement.setFloat(5, carro.getValor());
+            statement.setInt(5, carro.getKm());
             statement.setString(6, carro.getDescricao());
-            statement.setInt(7, carro.getKm());
+            statement.setFloat(7, carro.getValor());
             statement.setInt(8, carro.getId());
             statement.executeUpdate();
 
@@ -57,7 +57,7 @@ public class CarroDAO extends GenericDAO {
                 float valor = resultSet.getFloat("valor"); //?
                 String descricaocarro = resultSet.getString("descricao");
                 int km = resultSet.getInt("km");
-                Carro carro = new Carro(placa, modelo,chassi, ano, valor, descricaocarro, km,id);
+                Carro carro = new Carro(placa, modelo,chassi, ano, km, descricaocarro, valor,id);
                 listaCarro.add(carro);
                 
             }
@@ -89,7 +89,7 @@ public class CarroDAO extends GenericDAO {
     }
 
     public void update(Carro carro) {
-        String sql = "UPDATE Carro SET placa = ?, modelo = ?, chassi = ?, ano = ?, valor = ?, descricaocarro = ?, km = ?, id = ? WHERE placa = ?";
+        String sql = "UPDATE Carro SET placa = ?, modelo = ?, chassi = ?, ano = ?, km = ?, descricaocarro = ?, valor = ?, id = ? WHERE placa = ?";
 
         try {
             Connection conn = this.getConnection();
@@ -99,9 +99,9 @@ public class CarroDAO extends GenericDAO {
             statement.setString(2, carro.getModelo());
             statement.setString(3, carro.getChassi());
             statement.setInt(4, carro.getAno());
-            statement.setFloat(5, carro.getValor());
+            statement.setInt(5, carro.getKm());
             statement.setString(6, carro.getDescricao());
-            statement.setInt(7, carro.getKm());
+            statement.setFloat(7, carro.getValor());
             statement.setInt(8, carro.getId());
             
             statement.executeUpdate();
@@ -135,9 +135,7 @@ public class CarroDAO extends GenericDAO {
                 String descricaocarro = resultSet.getString("descricao");
                 int km = resultSet.getInt("km");
 
-                Carro carro = new Carro(placa, modelo,chassi, ano, valor, descricaocarro, km,id);
-                // ?
-                carro = new Carro(placa, modelo,chassi, ano, valor, descricaocarro, km,id);
+                carro = new Carro(placa, modelo,chassi, ano, km, descricaocarro, valor,id);
             }
 
             resultSet.close();
