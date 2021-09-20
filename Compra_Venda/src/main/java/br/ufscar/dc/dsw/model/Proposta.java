@@ -5,9 +5,9 @@ public class Proposta {
     private float valorproposta;
     private String condicoes;
     private String data;
-    private String status;
-    private int idcliente;
-    private String placa;
+    private String statusproposta;
+    private int clienteproposta;
+    private String placaproposta;
 
 
     //SET METHODS
@@ -27,16 +27,16 @@ public class Proposta {
         this.condicoes = condicoes;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatusproposta(String statusproposta) {
+        this.statusproposta = statusproposta;
     }
 
-    public void setIdCliente(int idcliente) {
-        this.idcliente = idcliente;
+    public void setClienteproposta(int clienteproposta) {
+        this.clienteproposta = clienteproposta;
     }
     
-    public void setPlaca(String placa) {
-        this.placa = placa;
+    public void setPlacaproposta(String placaproposta) {
+        this.placaproposta = placaproposta;
     }
     
     //GET METHODS
@@ -57,26 +57,26 @@ public class Proposta {
         return condicoes;
     }
 
-    public String getStatus() {
-        return status;
+    public String getStatusproposta() {
+        return statusproposta;
     }
 
-    public int getIdCliente() {
-        return idcliente;
+    public int getClienteProposta() {
+        return clienteproposta;
     }
 
-    public String getPlaca() {
-        return placa;
+    public String getPlacaproposta() {
+        return placaproposta;
     }
    
-    public Proposta(int id, float valorproposta, String condicoes,String data, String status, int idcliente, String placa){
+    public Proposta(int id, float valorproposta, String condicoes,String data, String statusproposta, int clienteproposta, String placaproposta){
         this.id = id;
         this.valorproposta = valorproposta;
         this.data = data;
         this.condicoes = condicoes;
-        this.status = status;
-        this.idcliente = idcliente;
-        this.placa = placa;
+        this.statusproposta = statusproposta;
+        this.clienteproposta = clienteproposta;
+        this.placaproposta = placaproposta;
     }
     public Proposta(int id){
         this.id = id;

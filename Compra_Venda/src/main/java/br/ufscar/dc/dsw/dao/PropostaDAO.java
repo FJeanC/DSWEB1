@@ -13,12 +13,12 @@ public class PropostaDAO extends GenericDAO {
 
         List<Proposta> listaPropostas;
 
-        String sql = "SELECT * from Proposta p WHERE p.idcliente = ?";
+        String sql = "SELECT * from Proposta p WHERE p.clienteproposta = ?";
         try {
             Connection conn = this.getConnection();
             ResultSet resultSet;
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, usuario.getId()); //
+            statement.setInt(1, usuario.getId());
             resultSet = statement.executeQuery();
             listaPropostas = getFromResult(resultSet);
 
@@ -62,9 +62,9 @@ public class PropostaDAO extends GenericDAO {
                 int id = resultSet.getInt("id");
                 float valor = resultSet.getFloat("valorproposta");
                 String condicao = resultSet.getString("condicoes");
-                String status = resultSet.getString("status");
+                String status = resultSet.getString("statusproposta");
                 String data = resultSet.getString("dataatual");
-                int idcliente = resultSet.getInt("idcliente");
+                int idcliente = resultSet.getInt("clienteproposta");
                 String placa = resultSet.getString("placa");
 
                 Proposta proposta = new Proposta(id,valor, condicao, data, status, idcliente, placa);
