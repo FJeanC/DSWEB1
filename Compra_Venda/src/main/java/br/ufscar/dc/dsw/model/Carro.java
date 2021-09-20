@@ -2,17 +2,17 @@ package br.ufscar.dc.dsw.model;
 
 public class Carro {
 
-    private String cnpj;
     private String placa;
     private String modelo;
     private String chassi;
-    private String descricaocarro;
     private int ano;
     private int km;
+    private String descricaocarro;
     private float valor;
+    private int idloja;
+    
+    public Carro(String placa, String modelo, String chassi, int ano, int km, String descricaocarro, float valor, int idloja){
 
-    public Carro(String cnpj,String placa,String modelo,String chassi,String descricaocarro,int ano,int km,float valor){
-        this.cnpj = cnpj;
         this.placa = placa;
         this.modelo = modelo;
         this.chassi = chassi;
@@ -20,12 +20,11 @@ public class Carro {
         this.ano = ano;
         this.km = km;
         this.valor = valor;
+        this.idloja = idloja;
     }
     
     //SET METHODS
-      public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
+
      public void setPlaca(String placa) {
         this.placa = placa;
     }
@@ -47,11 +46,11 @@ public class Carro {
     public void setValor(float valor) {
         this.valor = valor;
     }
-
-    //GET METHODS
-    public String getCnpj() {
-        return cnpj;
+    public void setIdloja(int idloja) {
+        this.idloja = idloja;
     }
+    //GET METHODS
+
     public String getPlaca() {
         return placa;
     }
@@ -73,4 +72,9 @@ public class Carro {
     public float getValor() {
         return valor;
     }
+
+    public int getIdloja() {
+        return idloja;
+    }
+    
 }
