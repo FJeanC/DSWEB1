@@ -15,10 +15,6 @@ public class Usuario {
         return id;
     }
 
-    public void setCodigo (int codigo) {
-        this.id = codigo;
-    }
-
     public String getEmail() {
         return email;
     }
