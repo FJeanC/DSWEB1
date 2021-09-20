@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.ufscar.dc.dsw.domain.Usuario;
+import br.ufscar.dc.dsw.model.Usuario;
 import br.ufscar.dc.dsw.util.Erro;
 
 @WebServlet(urlPatterns = "/usuario/*")

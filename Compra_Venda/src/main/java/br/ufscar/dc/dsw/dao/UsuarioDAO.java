@@ -112,20 +112,20 @@ public class UsuarioDAO extends GenericDAO {
         }
     }
 
-    public Usuario getbyID(Long id) {
+    public Usuario getByEmail(String email) {
         Usuario usuario = null;
 
-        String sql = "SELECT * from Usuario WHERE idcliente = ?";
+        String sql = "SELECT * from Usuario WHERE email = ?";
 
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setLong(1, id);
+            statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 int idresult = resultSet.getInt("id");
-                String email = resultSet.getString("email");
+                String emailresult = resultSet.getString("email");
                 String senha = resultSet.getString("senha");
                 String cpf = resultSet.getString("cpf");
                 String nome = resultSet.getString("nome");
@@ -134,7 +134,7 @@ public class UsuarioDAO extends GenericDAO {
                 String datanasc = resultSet.getString("datanasc");
                 String papel = resultSet.getString("papel");
 
-                usuario = new Usuario(idresult, email, senha, cpf, nome, telefone, sexo, datanasc, papel);
+                usuario = new Usuario(idresult, emailresult, senha, cpf, nome, telefone, sexo, datanasc, papel);
             }
 
             resultSet.close();
