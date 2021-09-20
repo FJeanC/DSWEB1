@@ -1,7 +1,13 @@
-C:\Users\jeanf\OneDrive\Área de Trabalho\ENPE_3\WEB\Trabalhos_DSW\Primeiro Trabalho\Compra_Venda\src\main\java\br\ufscar\dc\dsw\domain\Usuario.java
-C:\Users\jeanf\OneDrive\Área de Trabalho\ENPE_3\WEB\Trabalhos_DSW\Primeiro Trabalho\Compra_Venda\src\main\java\br\ufscar\dc\dsw\controller\IndexController.java
-C:\Users\jeanf\OneDrive\Área de Trabalho\ENPE_3\WEB\Trabalhos_DSW\Primeiro Trabalho\Compra_Venda\src\main\java\br\ufscar\dc\dsw\dao\UsuarioDAO.java
-C:\Users\jeanf\OneDrive\Área de Trabalho\ENPE_3\WEB\Trabalhos_DSW\Primeiro Trabalho\Compra_Venda\src\main\java\br\ufscar\dc\dsw\util\Erro.java
-C:\Users\jeanf\OneDrive\Área de Trabalho\ENPE_3\WEB\Trabalhos_DSW\Primeiro Trabalho\Compra_Venda\src\main\java\br\ufscar\dc\dsw\controller\AdminController.java
-C:\Users\jeanf\OneDrive\Área de Trabalho\ENPE_3\WEB\Trabalhos_DSW\Primeiro Trabalho\Compra_Venda\src\main\java\br\ufscar\dc\dsw\dao\GenericDAO.java
-C:\Users\jeanf\OneDrive\Área de Trabalho\ENPE_3\WEB\Trabalhos_DSW\Primeiro Trabalho\Compra_Venda\src\main\java\br\ufscar\dc\dsw\controller\UsuarioController.java
+C:\Users\João\Downloads\ENPE\DSW1\DSWEB1\Compra_Venda\src\main\java\br\ufscar\dc\dsw\controller\UsuarioController.java
+C:\Users\João\Downloads\ENPE\DSW1\DSWEB1\Compra_Venda\src\main\java\br\ufscar\dc\dsw\dao\LojaDAO.java
+C:\Users\João\Downloads\ENPE\DSW1\DSWEB1\Compra_Venda\src\main\java\br\ufscar\dc\dsw\model\Loja.java
+C:\Users\João\Downloads\ENPE\DSW1\DSWEB1\Compra_Venda\src\main\java\br\ufscar\dc\dsw\model\Usuario.java
+C:\Users\João\Downloads\ENPE\DSW1\DSWEB1\Compra_Venda\src\main\java\br\ufscar\dc\dsw\dao\UsuarioDAO.java
+C:\Users\João\Downloads\ENPE\DSW1\DSWEB1\Compra_Venda\src\main\java\br\ufscar\dc\dsw\dao\PropostaDAO.java
+C:\Users\João\Downloads\ENPE\DSW1\DSWEB1\Compra_Venda\src\main\java\br\ufscar\dc\dsw\dao\GenericDAO.java
+C:\Users\João\Downloads\ENPE\DSW1\DSWEB1\Compra_Venda\src\main\java\br\ufscar\dc\dsw\controller\AdminController.java
+C:\Users\João\Downloads\ENPE\DSW1\DSWEB1\Compra_Venda\src\main\java\br\ufscar\dc\dsw\dao\CarroDAO.java
+C:\Users\João\Downloads\ENPE\DSW1\DSWEB1\Compra_Venda\src\main\java\br\ufscar\dc\dsw\model\Proposta.java
+C:\Users\João\Downloads\ENPE\DSW1\DSWEB1\Compra_Venda\src\main\java\br\ufscar\dc\dsw\util\Erro.java
+C:\Users\João\Downloads\ENPE\DSW1\DSWEB1\Compra_Venda\src\main\java\br\ufscar\dc\dsw\controller\IndexController.java
+C:\Users\João\Downloads\ENPE\DSW1\DSWEB1\Compra_Venda\src\main\java\br\ufscar\dc\dsw\model\Carro.java
