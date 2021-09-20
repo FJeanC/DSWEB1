@@ -14,7 +14,7 @@ CREATE TABLE Usuario(
     sexo VARCHAR(1), 
     datanasc VARCHAR(20), 
     papel VARCHAR(20) NOT NULL, 
-    PRIMARY KEY (id)
+    PRIMARY KEY (idcliente)
 );
 
 CREATE TABLE Loja(
@@ -53,6 +53,6 @@ CREATE TABLE Proposta(
 );
 
 INSERT INTO Usuario(email, senha, papel) VALUES ('admin', 'admin', 'ADMIN');
-INSERT INTO Usuario(email, senha, cpf, nome, telefone, sexo, datanasc, descricao) VALUES ('emailteste@teste', '123', '123456', 'Jao', 'telefone', 'M', '12/13/1821', 'CLIENTE');
+INSERT INTO Usuario(email, senha, cpf, nome, telefone, sexo, datanasc, papel) VALUES ('emailteste@teste', '123', '123456', 'Jao', 'telefone', 'M', '12/13/1821', 'CLIENTE');
 INSERT INTO Loja(emailloja, senhaloja, cnpj, nomeloja, descricao) VALUES ('emailloja@teste', '321', 'issoeumcnpj', 'Lojateste', 'Isso e uma descricao');
 INSERT INTO Carro(placa, modelo, chassi, ano, km, descricaocarro, valor) VALUES ('ABC-4321', 'Chevette', 'chassi', 1980, 100000, 'Outra descricao', 1000);

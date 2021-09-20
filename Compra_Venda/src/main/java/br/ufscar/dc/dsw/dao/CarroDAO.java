@@ -14,7 +14,7 @@ public class CarroDAO extends GenericDAO {
 
     public void insertCar(Carro carro) {
 
-        String sql = "INSERT INTO Carro (placa, modelo,chassi, ano, km, descricaocarro, valor,idloja) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Carro (placa, modelo,chassi, ano, km, descricaocarro, valor, lojacarro) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             Connection conn = this.getConnection();
@@ -54,7 +54,7 @@ public class CarroDAO extends GenericDAO {
                 String chassi = resultSet.getString("chassi");
                 int ano = resultSet.getInt("ano");
                 int km = resultSet.getInt("km");
-                String descricaocarro = resultSet.getString("descricao");
+                String descricaocarro = resultSet.getString("descricaocarro");
                 float valor = resultSet.getFloat("valor");
                 int idloja = resultSet.getInt("lojacarro");
                 Carro carro = new Carro(placa, modelo,chassi, ano, km, descricaocarro, valor,idloja);
@@ -88,7 +88,7 @@ public class CarroDAO extends GenericDAO {
     }
 
     public void updateCar(Carro carro) {
-        String sql = "UPDATE Carro SET placa = ?, modelo = ?, chassi = ?, ano = ?, km = ?, descricaocarro = ?, valor = ?, idloja = ? WHERE placa = ?";
+        String sql = "UPDATE Carro SET placa = ?, modelo = ?, chassi = ?, ano = ?, km = ?, descricaocarro = ?, valor = ?, lojacarro = ? WHERE placa = ?";
 
         try {
             Connection conn = this.getConnection();
@@ -133,9 +133,9 @@ public class CarroDAO extends GenericDAO {
                 String chassi = resultSet.getString("chassi");
                 int ano = resultSet.getInt("ano");
                 int km = resultSet.getInt("km");
-                String descricaocarro = resultSet.getString("descricao");
+                String descricaocarro = resultSet.getString("descricaocarro");
                 float valor = resultSet.getFloat("valor");
-                int idloja = resultSet.getInt("carroloja");
+                int idloja = resultSet.getInt("lojacarro");
 
                 carro = new Carro(placa_carro, modelo,chassi, ano, km, descricaocarro, valor, idloja);
             }

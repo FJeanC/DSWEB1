@@ -65,7 +65,7 @@ public class PropostaDAO extends GenericDAO {
                 String status = resultSet.getString("statusproposta");
                 String data = resultSet.getString("dataatual");
                 int idcliente = resultSet.getInt("clienteproposta");
-                String placa = resultSet.getString("placa");
+                String placa = resultSet.getString("placaproposta");
 
                 Proposta proposta = new Proposta(id,valor, condicao, data, status, idcliente, placa);
 
