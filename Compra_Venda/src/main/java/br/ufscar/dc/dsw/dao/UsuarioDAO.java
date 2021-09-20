@@ -49,7 +49,7 @@ public class UsuarioDAO extends GenericDAO {
 
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
+                int id = resultSet.getInt("idcliente");
                 String email = resultSet.getString("email");
                 String senha = resultSet.getString("senha");
                 String cpf = resultSet.getString("cpf");
@@ -124,7 +124,7 @@ public class UsuarioDAO extends GenericDAO {
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                int idresult = resultSet.getInt("id");
+                int idresult = resultSet.getInt("idcliente");
                 String emailresult = resultSet.getString("email");
                 String senha = resultSet.getString("senha");
                 String cpf = resultSet.getString("cpf");
