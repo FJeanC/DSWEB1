@@ -22,7 +22,7 @@ CREATE TABLE Loja(
     emailloja VARCHAR(64) NOT NULL,
     senhaloja VARCHAR(64) NOT NULL,
     cnpj VARCHAR(15),
-    nomeloja VARCHAR(64)
+    nomeloja VARCHAR(64),
     descricao VARCHAR(256)
 );
 
@@ -33,9 +33,9 @@ CREATE TABLE Carro(
     ano INTEGER,
     km INTEGER,
     descricaocarro VARCHAR(256),
-    valor FLOAT
+    valor FLOAT,
     FOREIGN KEY (idloja) REFERENCES Loja(idloja), ON DELETE CASCADE
-)
+);
 
 CREATE TABLE Proposta(
     id INT NOT NULL auto_increment,
@@ -46,7 +46,7 @@ CREATE TABLE Proposta(
     data VARCHAR(20),
     FOREIGN KEY (idcliente) REFERENCES Usuario(idcliente),
     FOREIGN KEY (placa) REFERENCES Carro(placa)
-)
+);
 
 INSERT INTO Usuario(email, senha, papel) VALUES ('admin', 'admin', 'ADMIN');
 INSERT INTO Usuario VALUES ('emailteste@teste', '123', '123456', 'Jao', 'telefone', 'M', '12/13/1821', 'CLIENTE');
