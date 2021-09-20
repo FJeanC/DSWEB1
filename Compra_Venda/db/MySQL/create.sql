@@ -8,7 +8,7 @@ CREATE TABLE Usuario(
     idcliente INT NOT NULL auto_increment, 
     email VARCHAR(64) NOT NULL, 
     senha VARCHAR(64) NOT NULL, 
-    cpf VARCHAR(10), 
+    cpf VARCHAR(12), 
     nome VARCHAR(64), 
     telefone VARCHAR(11), 
     sexo VARCHAR(1), 
@@ -37,12 +37,13 @@ CREATE TABLE Carro(
     FOREIGN KEY (idloja) REFERENCES Loja(idloja), ON DELETE CASCADE
 )
 
-CREATE TABLE Proposto(
+CREATE TABLE Proposta(
     id INT NOT NULL auto_increment,
     valorproposta FLOAT,
     condicoes VARCHAR(256),
     dataatual VARCHAR(20),
     status VARCHAR(20),
+    data VARCHAR(20),
     FOREIGN KEY (idcliente) REFERENCES Usuario(idcliente),
     FOREIGN KEY (placa) REFERENCES Carro(placa)
 )
