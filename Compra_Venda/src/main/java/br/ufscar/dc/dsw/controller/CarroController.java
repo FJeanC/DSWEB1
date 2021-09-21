@@ -50,7 +50,7 @@ public class CarroController extends HttpServlet {
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Carro> listaCarros = dao.getAllCars();
         request.setAttribute("listaCarros", listaCarros);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/lista.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("lista/lista.jsp");
         dispatcher.forward(request, response);
     }
 

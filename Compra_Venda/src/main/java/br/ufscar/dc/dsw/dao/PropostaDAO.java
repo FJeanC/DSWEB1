@@ -72,7 +72,7 @@ public class PropostaDAO extends GenericDAO {
                 listaPropostas.add(proposta);
 
             }
-        }catch (SQLException throwables) {
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return listaPropostas;

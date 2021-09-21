@@ -18,7 +18,6 @@
         <c:forEach var="carro" items="${requestScope.listaCarros}">
             <div class="teste"><img src="teste_img.png"><h2 class="titulo_carro">${carro.modelo} ${carro.valor}</h2></div>    
         </c:forEach>
-
       </div>
   </body>
 </html>

@@ -29,7 +29,9 @@ public class LojaDAO extends GenericDAO{
                 listaLojas.add(lojas);
                 //MOSTRAR TODOS OS DADOS?
             }
-
+            resultSet.close();
+            statement.close();
+            conn.close();
         } catch(SQLException e){
             throw new RuntimeException(e);
         }
@@ -51,7 +53,8 @@ public class LojaDAO extends GenericDAO{
             statement.executeQuery();
             statement.close();
 
-
+            statement.close();
+            conn.close();
         } catch(SQLException e){
             throw new RuntimeException(e);
         }
@@ -61,9 +64,11 @@ public class LojaDAO extends GenericDAO{
         try {
             Connection conn = this.getConnection();
             String sql = "DELETE Loja WHERE cnpj = ?";
-            PreparedStatement stantement = conn.prepareStatement(sql);
-            stantement.setString(1, loja.getCnpj());
-            stantement.executeQuery();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, loja.getCnpj());
+            statement.executeQuery();
+            statement.close();
+            conn.close();
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
@@ -85,7 +90,7 @@ public class LojaDAO extends GenericDAO{
 
             statement.executeQuery();
             statement.close();
-
+            conn.close();
         } catch(SQLException e){
             throw new RuntimeException(e);
         }
