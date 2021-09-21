@@ -15,11 +15,8 @@
     %>
 
     <div class="image-grid">
-
-
-        <!-- <img class="image-grid-col-2 image-grid-row-2" src="teste_img.png" alt="architecture">-->
         <c:forEach var="carro" items="${requestScope.listaCarros}">
-            <div class="teste"><img src="teste_img.png" alt="bd"><h2 class="titulo_carro">${carro.modelo} ${carro.valor}</h2></div>    
+            <div class="teste"><img src="teste_img.png"><h2 class="titulo_carro">${carro.modelo} ${carro.valor}</h2></div>    
         </c:forEach>
 
       </div>
