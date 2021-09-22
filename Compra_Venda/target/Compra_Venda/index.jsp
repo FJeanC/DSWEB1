@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,6 +11,7 @@
     <link rel = "stylesheet" type ="text/css" href = "style.css">
   </head>
   <body> 
+  <% String contextPath = request.getContextPath().replace("/", ""); %>
    <header>
     <div class="main">
       <div class="logo">
@@ -14,7 +19,7 @@
       </div>
       <ul class="top_bar">
         <li><a href="#">Contact</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="#">TESTEE</a></li>
         <li><a class="active" href="#">Home</a></li>
       </ul>
     </div>
@@ -22,8 +27,8 @@
 
  
      <div class="action_btn">
-        <a href="login.jsp" class="btn">SELL</a>
-        <a href="lista/lista.jsp" class="btn">BUY</a>
+        <a href="logins" class="btn">SELL</a>
+        <a href="carros" class="btn">BUY</a>
      </div>
 
 

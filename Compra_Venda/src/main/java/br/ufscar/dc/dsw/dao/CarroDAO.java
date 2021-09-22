@@ -41,7 +41,7 @@ public class CarroDAO extends GenericDAO {
 
         List<Carro> listaCarro = new ArrayList<>();
 
-        String sql = "SELECT * from Carro u";
+        String sql = "SELECT * from Carro";
 
         try {
             Connection conn = this.getConnection();

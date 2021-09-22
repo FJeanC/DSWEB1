@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.ufscar.dc.dsw.model.Usuario;
 import br.ufscar.dc.dsw.util.Erro;
 
-@WebServlet(urlPatterns = "/usuario/*")
+@WebServlet(urlPatterns = "/usuarios/*")
 public class UsuarioController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -31,7 +31,7 @@ public class UsuarioController extends HttpServlet {
     	if (usuario == null) {
     		response.sendRedirect(request.getContextPath());
     	} else if (usuario.getPapel().equals("CLIENTE")) {
-    		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/usuario/index.jsp");
+    		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/usuario/userindex.jsp");
             dispatcher.forward(request, response);
     	} else {
     		erros.add("Acesso não autorizado!");

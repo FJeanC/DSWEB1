@@ -13,8 +13,8 @@ import br.ufscar.dc.dsw.dao.UsuarioDAO;
 import br.ufscar.dc.dsw.model.Usuario;
 import br.ufscar.dc.dsw.util.Erro;
 
-@WebServlet(name = "Index", urlPatterns = { "/index.jsp", "/logout.jsp" })
-public class IndexController extends HttpServlet {
+@WebServlet(name = "Login", urlPatterns = "/logins/*")
+public class LoginController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -24,8 +24,8 @@ public class IndexController extends HttpServlet {
 		doGet(request, response);
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//request.getRequestDispatcher("login.jsp").forward(request, response);
 		Erro erros = new Erro();
 		if (request.getParameter("bOK") != null) {
 			String login = request.getParameter("login");
@@ -43,9 +43,9 @@ public class IndexController extends HttpServlet {
 					if (usuario.getSenha().equals(senha)) {
 						request.getSession().setAttribute("usuarioLogado", usuario);
 						if (usuario.getPapel().equals("ADMIN")) {
-							response.sendRedirect("admin/");
+							response.sendRedirect("admins/");
 						} else {
-							response.sendRedirect("usuario/");
+							response.sendRedirect("usuarios/");
 						}
 						return;
 					} else {
@@ -55,13 +55,14 @@ public class IndexController extends HttpServlet {
 					erros.add("Usuário não encontrado!");
 				}
 			}
+		} else {
+			request.getSession().invalidate();
+
+			request.setAttribute("mensagens", erros);
+
+			String URL = "/login.jsp";
+			RequestDispatcher rd = request.getRequestDispatcher(URL);
+			rd.forward(request, response);
 		}
-		request.getSession().invalidate();
-
-		request.setAttribute("mensagens", erros);
-
-		String URL = "/login.jsp";
-		RequestDispatcher rd = request.getRequestDispatcher(URL);
-		rd.forward(request, response);
 	}
 }

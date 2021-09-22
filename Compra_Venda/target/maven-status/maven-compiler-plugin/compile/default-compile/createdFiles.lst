@@ -1,0 +1,14 @@
+br\ufscar\dc\dsw\model\Usuario.class
+br\ufscar\dc\dsw\controller\CarroController.class
+br\ufscar\dc\dsw\dao\UsuarioDAO.class
+br\ufscar\dc\dsw\controller\UsuarioController.class
+br\ufscar\dc\dsw\util\Erro.class
+br\ufscar\dc\dsw\controller\AdminController.class
+br\ufscar\dc\dsw\dao\PropostaDAO.class
+br\ufscar\dc\dsw\controller\LoginController.class
+br\ufscar\dc\dsw\model\Proposta.class
+br\ufscar\dc\dsw\dao\LojaDAO.class
+br\ufscar\dc\dsw\model\Loja.class
+br\ufscar\dc\dsw\dao\CarroDAO.class
+br\ufscar\dc\dsw\model\Carro.class
+br\ufscar\dc\dsw\dao\GenericDAO.class

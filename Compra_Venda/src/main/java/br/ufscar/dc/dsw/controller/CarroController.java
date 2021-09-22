@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.ufscar.dc.dsw.model.Carro;
 import br.ufscar.dc.dsw.dao.CarroDAO;
-import br.ufscar.dc.dsw.util.Erro;
+//import br.ufscar.dc.dsw.util.Erro;
 
-@WebServlet(urlPatterns = "/lista/*")
+@WebServlet(urlPatterns = "/carros/*")
 public class CarroController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private CarroDAO dao;
@@ -36,6 +36,7 @@ public class CarroController extends HttpServlet {
         }
 
         try {
+            System.out.println(action);
             switch (action) {
                 default:
                     lista(request, response);
@@ -50,7 +51,7 @@ public class CarroController extends HttpServlet {
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Carro> listaCarros = dao.getAllCars();
         request.setAttribute("listaCarros", listaCarros);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("lista/lista.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/lista/lista.jsp");
         dispatcher.forward(request, response);
     }
 
