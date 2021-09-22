@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.ufscar.dc.dsw.dao.UsuarioDAO;
-import br.ufscar.dc.dsw.model.Usuario;
+import br.ufscar.dc.dsw.dao.LojaDAO;
+import br.ufscar.dc.dsw.model.Loja;
 import br.ufscar.dc.dsw.util.Erro;
 
-@WebServlet(name = "Login", urlPatterns = "/logins/*")
+@WebServlet(name = "Login", urlPatterns = {"/logins/*", "/logout.jsp"})
 public class LoginController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -37,16 +37,12 @@ public class LoginController extends HttpServlet {
 				erros.add("Senha não informada!");
 			}
 			if (!erros.isExisteErros()) {
-				UsuarioDAO dao = new UsuarioDAO();
-				Usuario usuario = dao.getByEmail(login);
-				if (usuario != null) {
-					if (usuario.getSenha().equals(senha)) {
-						request.getSession().setAttribute("usuarioLogado", usuario);
-						if (usuario.getPapel().equals("ADMIN")) {
-							response.sendRedirect("admins/");
-						} else {
-							response.sendRedirect("usuarios/");
-						}
+				LojaDAO dao = new LojaDAO();
+				Loja loja = dao.getByEmail(login);
+				if (loja != null) {
+					if (loja.getSenhaLoja().equals(senha)) {
+						request.getSession().setAttribute("lojaLogada", loja);
+						response.sendRedirect("lojas/");
 						return;
 					} else {
 						erros.add("Senha inválida!");
@@ -55,14 +51,13 @@ public class LoginController extends HttpServlet {
 					erros.add("Usuário não encontrado!");
 				}
 			}
-		} else {
-			request.getSession().invalidate();
-
-			request.setAttribute("mensagens", erros);
-
-			String URL = "/login.jsp";
-			RequestDispatcher rd = request.getRequestDispatcher(URL);
-			rd.forward(request, response);
 		}
+		request.getSession().invalidate();
+
+		request.setAttribute("mensagens", erros);
+
+		String URL = "/login.jsp";
+		RequestDispatcher rd = request.getRequestDispatcher(URL);
+		rd.forward(request, response);
 	}
 }

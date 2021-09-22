@@ -26,7 +26,7 @@
                 </div>
              </c:if>
             <div class="formBox">
-               <form method="post">
+               <form method="post" action="logins">
                   <p>Username</p>
                   <input type="text" name="login" value="${param.login}" placeholder="Joe Dick">
                   <p>Password</p>

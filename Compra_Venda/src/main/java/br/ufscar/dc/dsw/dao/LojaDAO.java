@@ -96,5 +96,36 @@ public class LojaDAO extends GenericDAO{
         }
     }
 
+    public Loja getByEmail(String email) {
+        Loja loja = null;
+
+        String sql = "SELECT * from Loja u WHERE u.emailloja = ?";
+
+        try {
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                int idloja = resultSet.getInt("idloja");
+                String emailresult = resultSet.getString("emailloja");
+                String senha = resultSet.getString("senhaloja");
+                String cnpj = resultSet.getString("cnpj");
+                String nome = resultSet.getString("nomeloja");
+                String descricao = resultSet.getString("descricao");
+
+                loja = new Loja(idloja, emailresult, senha, cnpj, nome, descricao);
+            }
+
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return loja;
+    }
+
 
 }

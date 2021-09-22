@@ -36,7 +36,6 @@ public class CarroController extends HttpServlet {
         }
 
         try {
-            System.out.println(action);
             switch (action) {
                 default:
                     lista(request, response);
@@ -44,8 +43,7 @@ public class CarroController extends HttpServlet {
             }
         } catch (RuntimeException | IOException | ServletException e) {
             throw new ServletException(e);
-        }
-            
+        }      
     }
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
