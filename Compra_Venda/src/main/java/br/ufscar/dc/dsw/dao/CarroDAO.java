@@ -71,6 +71,40 @@ public class CarroDAO extends GenericDAO {
         return listaCarro;
     }
 
+    public List<Carro> getCarsLoja(int loja) {
+
+        List<Carro> listaCarro = new ArrayList<>();
+
+        String sql = "SELECT * from Carro c WHERE c.lojacarro = ?";
+
+        try {
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setInt(1, loja);
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String placa = resultSet.getString("placa");
+                String modelo = resultSet.getString("modelo");
+                String chassi = resultSet.getString("chassi");
+                int ano = resultSet.getInt("ano");
+                int km = resultSet.getInt("km");
+                String descricaocarro = resultSet.getString("descricaocarro");
+                float valor = resultSet.getFloat("valor");
+                int idloja = resultSet.getInt("lojacarro");
+                Carro carro = new Carro(placa, modelo,chassi, ano, km, descricaocarro, valor,idloja);
+                listaCarro.add(carro);
+            }
+            
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listaCarro;
+    }
+
     public void deleteCar(Carro carro) {
         String sql = "DELETE FROM Carro where placa = ?";
 
