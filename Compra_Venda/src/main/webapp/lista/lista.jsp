@@ -5,19 +5,22 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Compra e Venda de carros</title>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" type ="text/css" href = "lista.css">
-  </head>
-  <body> 
+    <title>Lista Carros</title>
+    <link rel="stylesheet" href="lista.css">
+</head>
+<body> 
     <%
         String contextPath = request.getContextPath().replace("/", "");
     %>
-
+    <div id="Filtro">
+      <input type="text" name="Filtro" placeholder="Seleciona categoria" id="filtro_input">
+    </div>
+      <br>
     <div class="image-grid">
         <c:forEach var="carro" items="${requestScope.listaCarros}">
-            <div class="teste"><img src="lista/teste_img.png" alt="carroalt"><h2 class="titulo_carro">${carro.modelo} ${carro.valor}</h2></div>    
+            <div class="teste"><img src="img/${carro.modelo}.jpg" alt="carroalt"><h2 class="titulo_carro">${carro.modelo} ${carro.valor}</h2></div>
         </c:forEach>
       </div>
   </body>
