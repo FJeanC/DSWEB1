@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import br.ufscar.dc.dsw.dao.LojaDAO;
 import br.ufscar.dc.dsw.model.Loja;
 import br.ufscar.dc.dsw.util.Erro;
+import br.ufscar.dc.dsw.model.Usuario;
+import br.ufscar.dc.dsw.dao.UsuarioDAO;
 
 @WebServlet(name = "Login", urlPatterns = {"/logins/*", "/logout.jsp"})
 public class LoginController extends HttpServlet {
@@ -39,18 +41,41 @@ public class LoginController extends HttpServlet {
 			if (!erros.isExisteErros()) {
 				LojaDAO dao = new LojaDAO();
 				Loja loja = dao.getByEmail(login);
-				if (loja != null) {
-					if (loja.getSenhaLoja().equals(senha)) {
+				UsuarioDAO dao2 = new UsuarioDAO();
+				Usuario user = dao2.getByEmail(login);
+				
+
+				if(user != null && loja == null) {
+					if(user.getSenha().equals(senha))
+					{
+						request.getSession().setAttribute("usuarioLogado", user);
+						if(user.getPapel().equals("ADMIN")){
+							response.sendRedirect("admins/");
+						}
+						else {
+							response.sendRedirect("usuarios/");
+						}
+						return;
+					}
+					else{
+						erros.add("Senha Inválida!");
+					}
+				}
+				else{
+					if(loja != null && user == null) {
+						if (loja.getSenhaLoja().equals(senha)) {
 						request.getSession().setAttribute("lojaLogada", loja);
 						response.sendRedirect("lojas/");
 						return;
 					} else {
 						erros.add("Senha inválida!");
 					}
+					
 				} else {
 					erros.add("Usuário não encontrado!");
 				}
 			}
+		}
 		}
 		request.getSession().invalidate();
 
