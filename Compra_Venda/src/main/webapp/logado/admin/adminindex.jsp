@@ -10,9 +10,10 @@
         <h1>Página do Administrador</h1>
         <p>Olá ${sessionScope.usuarioLogado.nome}</p>
         <ul>
-            <li>
-                <a href="${pageContext.request.contextPath}/logout.jsp">Sair</a>
-            </li>
+                <li> <a href="#">CRUD de CLientes</a><br></li>
+                <li> <a href="#">CRUD de Lojas</a><br></li>
+                <li> <a href="${pageContext.request.contextPath}/logout.jsp">Sair</a></li>
+            
         </ul>
     </body>
 </html>
