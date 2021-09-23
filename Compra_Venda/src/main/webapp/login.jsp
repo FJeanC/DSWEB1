@@ -44,7 +44,7 @@
                   <p>Password</p>
                   <input type="password" name="senha" placeholder="********">
                   <input type="submit" name="bOK" value="Entrar"/>
-                  <a href="#">Forgot Password</a>
+                  
                </form>
                </form>
             </div>
