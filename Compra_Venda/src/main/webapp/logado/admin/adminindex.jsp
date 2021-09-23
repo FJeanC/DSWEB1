@@ -28,7 +28,7 @@
         <ul>
                 <p> CRUD de CLientes<br></p>
                 <ol>
-                    <li><a href="#">Criar Cliente</li></a>
+                    <li><a href="./cadastro">Criar Cliente</li></a>
                     <li><a href="./listar">Listar Clientes</li></a>
                     <li><a href="#">Atualizar Cliente</li></a>
                     <li><a href="#">Deletar Cliente</li></a>
