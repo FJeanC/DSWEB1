@@ -55,6 +55,6 @@ CREATE TABLE Proposta(
 INSERT INTO Usuario(email, senha, papel) VALUES ('admin', 'admin', 'ADMIN');
 INSERT INTO Usuario(email, senha, cpf, nome, telefone, sexo, datanasc, papel) VALUES ('emailteste@teste', '123', '123456', 'Jao', 'telefone', 'M', '12/13/1821', 'CLIENTE');
 INSERT INTO Loja(emailloja, senhaloja, cnpj, nomeloja, descricao) VALUES ('emailloja@teste', '321', 'issoeumcnpj', 'Lojateste', 'Isso e uma descricao');
-INSERT INTO Carro(placa, modelo, chassi, ano, km, descricaocarro, valor) VALUES ('ABC-1234', 'Chevette', 'chassi1', 1980, 100, 'Outra descricao', 1000);
+INSERT INTO Carro(placa, modelo, chassi, ano, km, descricaocarro, valor, lojacarro) VALUES ('ABC-1234', 'Chevette', 'chassi1', 1980, 100, 'Outra descricao', 1000, 'emailloja@teste');
 INSERT INTO Carro(placa, modelo, chassi, ano, km, descricaocarro, valor) VALUES ('ABC-4321', 'Ferrari', 'chassi2', 1980, 200, 'Outra descricao', 20000);
 INSERT INTO Carro(placa, modelo, chassi, ano, km, descricaocarro, valor) VALUES ('ABC-2222', 'Siena', 'chassi3', 1980, 300, 'Outra descricao', 300000);

@@ -41,13 +41,25 @@ public class LojaController extends HttpServlet {
     	if (loja == null) {
     		response.sendRedirect(request.getContextPath());
         }
+        String action = request.getPathInfo();
+        if (action == null) {
+            action = "";
+        }
         try {
-            listacarrosloja(request, response, loja.getEmailloja());
+            switch(action) {
+                case "/criar":
+                    apresentaFormCriar(request, response, loja.getEmailloja());
+                    break;
+                case "/insere":
+                    insere(request, response);
+                    break;
+                default:
+                    listacarrosloja(request, response, loja.getEmailloja());
+                    break;
+            }
         } catch (RuntimeException | IOException | ServletException  e) {
             throw new ServletException(e);
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/loja/lojaindex.jsp");
-        dispatcher.forward(request, response);
     }
 
     private void listacarrosloja(HttpServletRequest request, HttpServletResponse response, String idloja) throws ServletException, IOException {
@@ -55,5 +67,27 @@ public class LojaController extends HttpServlet {
         request.setAttribute("listaCarrosLoja", listaloja);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/loja/lojaindex.jsp");
         dispatcher.forward(request, response);
+    }
+
+    private void apresentaFormCriar(HttpServletRequest request, HttpServletResponse response, String idloja) throws ServletException, IOException {
+        request.setAttribute("emailLoja", idloja);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/loja/criacarro.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void insere(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        String placa = request.getParameter("placa");
+        String modelo = request.getParameter("modelo");
+        String chassi = request.getParameter("chassi");
+        Integer ano = Integer.parseInt(request.getParameter("ano"));
+        Integer km = Integer.parseInt(request.getParameter("km"));
+        String descricaocarro = request.getParameter("descricaocarro");
+        Float valor = Float.parseFloat(request.getParameter("valor"));
+        String idloja = request.getParameter("lojacarro");
+
+        Carro carro = new Carro(placa, modelo, chassi, ano, km, descricaocarro, valor, idloja);
+        dao.insertCar(carro);
+        response.sendRedirect("default");
     }
 }

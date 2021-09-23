@@ -10,7 +10,10 @@
         <h1>Página do Usuário</h1>
         <p>Olá ${sessionScope.usuarioLogado.nome}</p>
         <ul>
-            <li>
+            <li>   
+                <% String contextPath = request.getContextPath().replace("/", ""); %>
+                <a href="#">Teste de propostas</a><br>
+                
                 <a href="${pageContext.request.contextPath}/logout.jsp">Sair</a>
             </li>
         </ul>
