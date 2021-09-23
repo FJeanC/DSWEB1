@@ -19,8 +19,7 @@ pageEncoding="UTF-8"%>
 
 <tr>
     <td><label for="idcliente">ID</label></td>
-    <td><input type="text" id="idcliente" name="idcliente" size="45"
-    required value="${usuario.idcliente}" /></td>
+    <td><input type="number" id="idcliente" name="idcliente" size="5" value="${usuario.idcliente}" readonly /></td>
 </tr>
 <tr>
     <td><label for="email">Email</label></td>
@@ -34,8 +33,7 @@ pageEncoding="UTF-8"%>
 </tr>
 <tr>
     <td><label for="cpf">CPF</label></td>
-    <td><input type="number" id="cpf" name="cpf" size="45" required
-    value="${usuario.cpf}" /></td>
+    <td><input type="text" id="cpf" name="cpf" size="50" value="${usuario.cpf}" /></td>
 </tr>
 <tr>
     <td><label for="nome">Nome</label></td>
@@ -43,8 +41,7 @@ pageEncoding="UTF-8"%>
 </tr>
 <tr>
     <td><label for="telefone">Telefone</label></td>
-    <td><input type="number" id="telefone" name="telefone" required
-    size="15" value="${usuario.preco}" /></td>
+    <td><input type="text" id="telefone" name="telefone" size="50" value="${usuario.telefone}" /></td>
 </tr>
 <tr>
     <td><label for="sexo">Sexo</label></td>
@@ -58,7 +55,11 @@ pageEncoding="UTF-8"%>
 </tr>
 <tr>
     <td><label for="papel">Papel</label></td>
-    <td><input type="text" id="papel" name="papel" size="45" value="${papel}"/></td>
+    <td><select id="papel" name="papel">
+        <option value="CLIENTE">CLIENTE</option>
+        <option value="ADMIN">ADMIN</option>
+        </select>
+    </td>
 </tr>
 <tr>
     <td colspan="2" align="center"><input type="submit" value="Salva"

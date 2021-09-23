@@ -18,7 +18,7 @@ public class PropostaDAO extends GenericDAO {
             Connection conn = this.getConnection();
             ResultSet resultSet;
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, usuario.getId());
+            statement.setInt(1, usuario.getIdcliente());
             resultSet = statement.executeQuery();
             listaPropostas = getFromResult(resultSet);
 

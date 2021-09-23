@@ -19,6 +19,12 @@ public class AdminController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+	private UsuarioDAO dao;
+	@Override
+    public void init() {
+        dao = new UsuarioDAO();
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -36,21 +42,26 @@ public class AdminController extends HttpServlet {
 			String action = request.getPathInfo();
 			switch(action){
 				case "/listar":
-				lista_usuarios(request,response);
-				//RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/teste.jsp");
-				//dispatcher.forward(request, response);
-
+					lista_usuarios(request,response);
+					break;
 				case "/edicao":
-						edicao(request,response);
+					apresentaFormEdicao(request, response);
+					break;
 				case "/cadastro":
-					apresentaFormCadastro(request,response,usuario.getEmail());
+					apresentaFormCadastro(request,response);
 					break;
 				case "/insere":
 					insere(request, response);
 					break;
+				case "/atualizacao":
+					updateuser(request, response);
+					break;
+				case "/remocao":
+					remove(request, response);
+					break;
 				default:
-				RequestDispatcher dps = request.getRequestDispatcher("/logado/admin/adminindex.jsp");
-            	dps.forward(request, response);
+					RequestDispatcher dps = request.getRequestDispatcher("/logado/admin/adminindex.jsp");
+            		dps.forward(request, response);
 			break;
 			}
     		
@@ -64,32 +75,28 @@ public class AdminController extends HttpServlet {
     }
 
 	 private void lista_usuarios(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UsuarioDAO dao = new UsuarioDAO();
         List<Usuario> listaUsuarios = dao.getAll();
         request.setAttribute("listaUsuarios", listaUsuarios);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/teste.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/listar.jsp");
 		dispatcher.forward(request, response);
     }
 
-	private void edicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = (request.getParameter("email"));
-		UsuarioDAO dao = new UsuarioDAO();
         Usuario user = dao.getByEmail(id);
         request.setAttribute("usuario", user);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/edicao.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/usuario/cadastro.jsp");
         dispatcher.forward(request, response);
     }
 
-	 private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response, String id) throws ServletException, IOException {
-        request.setAttribute("email", id);
+	 private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/usuario/cadastro.jsp");
         dispatcher.forward(request, response);
     }
 
 	private void insere(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UsuarioDAO dao = new UsuarioDAO();
 		request.setCharacterEncoding("UTF-8");
-		int id_user = Integer.parseInt(request.getParameter("idcliente"));
+		int id_user = 0;
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
         String CPF = request.getParameter("cpf");
@@ -101,6 +108,29 @@ public class AdminController extends HttpServlet {
         Usuario usuario = new Usuario(id_user,email, senha, CPF, nome, telefone, sexo, nascimento, papel);
 
         dao.insert(usuario);
+        response.sendRedirect("default");
+    }
+
+	private void updateuser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		Integer id_user = Integer.parseInt(request.getParameter("idcliente"));
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+        String CPF = request.getParameter("cpf");
+        String nome = request.getParameter("nome");
+        String telefone = request.getParameter("telefone");
+        String sexo = request.getParameter("sexo");
+        String nascimento = request.getParameter("datanasc");
+        String papel = request.getParameter("papel");
+		Usuario usuario = new Usuario(id_user,email, senha, CPF, nome, telefone, sexo, nascimento, papel);
+
+		dao.update(usuario);
+		response.sendRedirect("default");
+	}
+
+	private void remove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Integer iduser = Integer.parseInt(request.getParameter("idcliente"));
+        dao.delete(iduser);
         response.sendRedirect("default");
     }
 }
