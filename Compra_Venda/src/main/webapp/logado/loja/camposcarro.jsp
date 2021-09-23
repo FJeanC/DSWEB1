@@ -14,7 +14,7 @@ pageEncoding="UTF-8"%>
         </c:choose>
 </caption>
 <c:if test="${carro != null}">
-    <input type="hidden" name="id" value="${carro.id}" />
+    <input type="hidden" name="placa" value="${carro.placa}" />
 </c:if>
 <tr>
     <td><label for="modelo">Modelo</label></td>
@@ -39,7 +39,7 @@ pageEncoding="UTF-8"%>
 <tr>
     <td><label for="valor">Valor</label></td>
     <td><input type="number" id="valor" name="valor" required
-    min="0.01" step="any" size="5" value="${carro.preco}" /></td>
+    min="0.01" step="any" size="5" value="${carro.valor}" /></td>
 </tr>
 <tr>
     <td><label for="km">Kilometragem</label></td>
@@ -51,6 +51,7 @@ pageEncoding="UTF-8"%>
     <td><input type="text" id="descricaocarro" name="descricaocarro" size="45" required
     value="${carro.descricaocarro}" /></td>
 </tr>
+
 <tr>
     <td><label for="lojacarro">Email Loja</label></td>
     <td><input type="text" id="lojacarro" name="lojacarro" size="45" value="${emailLoja}" readonly /></td>

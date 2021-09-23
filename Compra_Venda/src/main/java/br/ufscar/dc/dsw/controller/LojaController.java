@@ -50,8 +50,17 @@ public class LojaController extends HttpServlet {
                 case "/criar":
                     apresentaFormCriar(request, response, loja.getEmailloja());
                     break;
+                case "/editar":
+                    apresentaFormEditar(request, response, loja.getEmailloja());
+                    break;
                 case "/insere":
                     insere(request, response);
+                    break;
+                case "/update":
+                    updatecarro(request, response);
+                    break;
+                case "/remove":
+                    remove(request, response);
                     break;
                 default:
                     listacarrosloja(request, response, loja.getEmailloja());
@@ -88,6 +97,37 @@ public class LojaController extends HttpServlet {
 
         Carro carro = new Carro(placa, modelo, chassi, ano, km, descricaocarro, valor, idloja);
         dao.insertCar(carro);
+        response.sendRedirect("default");
+    }
+
+    private void apresentaFormEditar(HttpServletRequest request, HttpServletResponse response, String idloja) throws ServletException, IOException {
+        request.setAttribute("emailLoja", idloja);
+        String placa = request.getParameter("placa");
+        Carro carro = dao.getbyPlaca(placa);
+        request.setAttribute("carro", carro);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/loja/criacarro.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void updatecarro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        String placa = request.getParameter("placa");
+        String modelo = request.getParameter("modelo");
+        String chassi = request.getParameter("chassi");
+        Integer ano = Integer.parseInt(request.getParameter("ano"));
+        Integer km = Integer.parseInt(request.getParameter("km"));
+        String descricaocarro = request.getParameter("descricaocarro");
+        Float valor = Float.parseFloat(request.getParameter("valor"));
+        String idloja = request.getParameter("lojacarro");
+
+        Carro carro = new Carro(placa, modelo, chassi, ano, km, descricaocarro, valor, idloja);
+        dao.updateCar(carro);
+        response.sendRedirect("default");
+    }
+
+    private void remove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String placa = request.getParameter("placa");
+        dao.deleteCar(placa);
         response.sendRedirect("default");
     }
 }

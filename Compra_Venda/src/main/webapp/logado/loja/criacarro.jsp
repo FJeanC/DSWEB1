@@ -3,7 +3,7 @@ pageEncoding="UTF-8"%> <%@ page isELIgnored="false"%> <%@ taglib
 uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
   <head>
-    <title>Livraria Virtual</title>
+    <title>Gerenciamento</title>
   </head>
   <body>
     <div align="center">
@@ -15,7 +15,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <div align="center">
       <c:choose>
         <c:when test="${carro != null}">
-          <form action="atualizacao" method="post">
+          <form action="update" method="post">
             <%@include file="camposcarro.jsp"%>
           </form>
         </c:when>
