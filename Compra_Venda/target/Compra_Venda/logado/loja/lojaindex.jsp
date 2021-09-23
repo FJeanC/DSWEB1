@@ -18,9 +18,10 @@
         <p>Seus carros:</p>
         <a href="${pageContext.request.contextPath}/lojas/criar">Adicionar Carro</a>
         <br>
-        <c:forEach var="carros" items="${requestScope.listaCarrosLoja}">
+        <c:forEach var="carro" items="${requestScope.listaCarrosLoja}">
             <br>
-            <div class="teste"><img src="/src/main/webapp/img/Chevette.jpg" alt="carroalt"><h2 class="titulo_carro">${carros.modelo} ${carros.valor}</h2></div>    
+            <a href="${pageContext.request.contextPath}/lojas/editar?placa=${carro.placa}" class="teste"><img src="/src/main/webapp/img/Chevette.jpg" alt="carroalt"><h2 class="titulo_carro">${carro.modelo} ${carro.ano}</h2></a>
+            <a href="${pageContext.request.contextPath}/lojas/remove?placa=${carro.placa}" onclick="return confirm('Tem certeza de que deseja excluir este item?');"><h2>Remover Carro</h2></a>
         </c:forEach>
     </body>
 </html>

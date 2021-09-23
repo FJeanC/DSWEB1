@@ -25,7 +25,7 @@ public class CarroDAO extends GenericDAO {
             statement.setString(3, carro.getChassi());
             statement.setInt(4, carro.getAno());
             statement.setInt(5, carro.getKm());
-            statement.setString(6, carro.getDescricao());
+            statement.setString(6, carro.getDescricaocarro());
             statement.setFloat(7, carro.getValor());
             statement.setString(8, carro.getLojacarro());
             statement.executeUpdate();
@@ -105,14 +105,14 @@ public class CarroDAO extends GenericDAO {
         return listaCarro;
     }
 
-    public void deleteCar(Carro carro) {
+    public void deleteCar(String placa) {
         String sql = "DELETE FROM Carro where placa = ?";
 
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setString(1, carro.getPlaca());
+            statement.setString(1, placa);
             statement.executeUpdate();
 
             statement.close();
@@ -122,23 +122,20 @@ public class CarroDAO extends GenericDAO {
     }
 
     public void updateCar(Carro carro) {
-        String sql = "UPDATE Carro SET placa = ?, modelo = ?, chassi = ?, ano = ?, km = ?, descricaocarro = ?, valor = ?, lojacarro = ? WHERE placa = ?";
+        String sql = "UPDATE Carro SET modelo = ?, chassi = ?, ano = ?, km = ?, descricaocarro = ?, valor = ?, lojacarro = ? WHERE placa = ?";
 
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setString(1, carro.getPlaca());
-            statement.setString(2, carro.getModelo());
-            statement.setString(3, carro.getChassi());
-            statement.setInt(4, carro.getAno());
-            statement.setInt(5, carro.getKm());
-            statement.setString(6, carro.getDescricao());
-            statement.setFloat(7, carro.getValor());
-            statement.setString(8, carro.getLojacarro());
-
-            //PRECISO DISSO?
-            statement.setString(9, carro.getPlaca());
+            statement.setString(1, carro.getModelo());
+            statement.setString(2, carro.getChassi());
+            statement.setInt(3, carro.getAno());
+            statement.setInt(4, carro.getKm());
+            statement.setString(5, carro.getDescricaocarro());
+            statement.setFloat(6, carro.getValor());
+            statement.setString(7, carro.getLojacarro());
+            statement.setString(8, carro.getPlaca());
             
             statement.executeUpdate();
 

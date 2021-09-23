@@ -34,7 +34,7 @@ public class Carro {
     public void setChassi(String chassi) {
         this.chassi = chassi;
     }
-    public void setDescricao(String descricaocarro) {
+    public void setDescricaocarro(String descricaocarro) {
         this.descricaocarro = descricaocarro;
     }
      public void setAno(int ano) {
@@ -60,7 +60,7 @@ public class Carro {
     public String getChassi() {
         return chassi;
     }
-    public String getDescricao() {
+    public String getDescricaocarro() {
         return descricaocarro;
     }
     public int getAno() {
