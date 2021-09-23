@@ -35,7 +35,7 @@ public class AdminController extends HttpServlet {
     	} else if (usuario.getPapel().equals("ADMIN")) {
 			String action = request.getPathInfo();
 			switch(action){
-				case "/teste.jsp":
+				case "/listar":
 				lista_usuarios(request,response);
 				//RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/teste.jsp");
 				//dispatcher.forward(request, response);
