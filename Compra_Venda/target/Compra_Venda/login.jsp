@@ -38,7 +38,7 @@
                 </div>
              </c:if>
             <div class="formBox">
-               <form method="post" action="logins">
+               <form method="post" action="logins?placa=${param.placa}">
                   <p>Username</p>
                   <input type="text" name="login" value="${param.login}" placeholder="Joe Dick">
                   <p>Password</p>

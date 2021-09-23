@@ -10,12 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.ufscar.dc.dsw.model.Usuario;
+import br.ufscar.dc.dsw.model.Proposta;
+import br.ufscar.dc.dsw.dao.PropostaDAO;
 import br.ufscar.dc.dsw.util.Erro;
 
 @WebServlet(urlPatterns = "/usuarios/*")
 public class UsuarioController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
+
+	private PropostaDAO dao;
+	@Override
+    public void init() {
+        dao = new PropostaDAO();
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,12 +35,29 @@ public class UsuarioController extends HttpServlet {
     	
     	Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
     	Erro erros = new Erro();
-    	
+
+		String action = request.getPathInfo();
+        if (action == null) {
+            action = "";
+        }
     	if (usuario == null) {
     		response.sendRedirect(request.getContextPath());
     	} else if (usuario.getPapel().equals("CLIENTE")) {
-    		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/usuario/userindex.jsp");
-            dispatcher.forward(request, response);
+			try {
+				switch (action) {
+					case "/fazproposta":
+						fazproposta(request, response);
+						break;
+					case "/insereproposta":
+						insereproposta(request, response);
+						break;
+					default:
+						RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/usuario/userindex.jsp");
+						dispatcher.forward(request, response);
+				} 
+			} catch (RuntimeException | IOException | ServletException  e) {
+				throw new ServletException(e);
+			}
     	} else {
     		erros.add("Acesso não autorizado!");
     		erros.add("Apenas Papel [USER] tem acesso a essa página");
@@ -41,4 +66,26 @@ public class UsuarioController extends HttpServlet {
     		rd.forward(request, response);
     	}    	
     }
+
+	private void fazproposta(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
+		request.setAttribute("usuario", usuario);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/usuario/criaproposta.jsp");
+        dispatcher.forward(request, response);
+	}
+
+	private void insereproposta(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		Float valor = Float.parseFloat(request.getParameter("valorproposta"));
+		String condicao = request.getParameter("condicoes");
+		String status = request.getParameter("statusproposta");
+		String data = request.getParameter("dataatual");
+		Integer idcliente = Integer.parseInt(request.getParameter("clienteproposta"));
+		String placa = request.getParameter("placaproposta");
+
+		Proposta proposta = new Proposta(0, valor, condicao, data, status, idcliente, placa);
+		dao.inserePropostaDAO(proposta);
+
+		response.sendRedirect("default");
+	}
 }

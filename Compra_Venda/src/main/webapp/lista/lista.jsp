@@ -33,8 +33,8 @@ pageEncoding="UTF-8"%>
       <br>
     <div class="image-grid">
         <c:forEach var="carro" items="${requestScope.listaCarros}">
-         
-            <a href="#"><div class="teste"><img src="img/${carro.modelo}.jpg" alt="carroalt"><h2 class="titulo_carro">${carro.modelo} R$${carro.valor}</h2></div>
+            
+            <a href="logins?placa=${carro.placa}"><div class="teste"><img src="${pageContext.request.contextPath}/img/${carro.modelo}.jpg" alt="carroalt"><h2 class="titulo_carro">${carro.modelo} R$${carro.valor}</h2></div>
         </c:forEach>
       </div>
   </body>

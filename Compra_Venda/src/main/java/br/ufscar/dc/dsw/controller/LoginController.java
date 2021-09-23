@@ -53,7 +53,12 @@ public class LoginController extends HttpServlet {
 							response.sendRedirect("admins/");
 						}
 						else {
-							response.sendRedirect("usuarios/");
+							if (request.getParameter("placa") == null || request.getParameter("placa").isEmpty()) {
+								response.sendRedirect("usuarios/");
+							} else {
+								request.getSession().setAttribute("placacomprar", request.getParameter("placa"));
+								response.sendRedirect("usuarios/fazproposta?placa=" + request.getParameter("placa") + "/");
+							}
 						}
 						return;
 					}

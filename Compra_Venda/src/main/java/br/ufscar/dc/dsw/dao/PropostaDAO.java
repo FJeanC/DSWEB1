@@ -32,6 +32,28 @@ public class PropostaDAO extends GenericDAO {
         return listaPropostas;
     }
 
+    public void inserePropostaDAO(Proposta proposta) {
+        String sql = "INSERT INTO Proposta (valorproposta, condicoes, dataatual, statusproposta, clienteproposta, placaproposta) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try {
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setFloat(1, proposta.getValor());
+            statement.setString(2, proposta.getCondicoes());
+            statement.setString(3, proposta.getDataatual());
+            statement.setString(4, proposta.getStatusproposta());
+            statement.setInt(5, proposta.getClienteProposta());
+            statement.setString(6, proposta.getPlacaproposta());
+            statement.executeUpdate();
+
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    } 
+
     public List<Proposta> getAll() {
 
         List<Proposta> listaPropostas;
@@ -55,7 +77,7 @@ public class PropostaDAO extends GenericDAO {
         return listaPropostas;
     }
 
-    private List<Proposta> getFromResult(ResultSet resultSet){
+    private List<Proposta> getFromResult(ResultSet resultSet) {
         List<Proposta> listaPropostas = new ArrayList<>();
         try {
             while (resultSet.next()) {
