@@ -71,16 +71,22 @@ public class AdminController extends HttpServlet {
 				case "/cadastrolojas":
 					apresentaFormCadastroLoja(request, response);
 					break;
-				case "/edicaolojas":
+				case "/edicaoloja":
 					apresentaFormEdicaoLoja(request, response);
 					break;
 				case "/insereloja":
 					insereloja(request, response);
 					break;
+				case "/atualizacaoloja":
+					updateloja(request, response);
+					break;
+				case "/remocaoloja":
+					removeloja(request, response);
+					break;
 				default:
 					RequestDispatcher dps = request.getRequestDispatcher("/logado/admin/adminindex.jsp");
             		dps.forward(request, response);
-			break;
+					break;
 			}
     		
     	} else {
@@ -163,7 +169,7 @@ public class AdminController extends HttpServlet {
 		String emailloja = (request.getParameter("emailloja"));
         Loja loja = dao2.getByEmail(emailloja);
         request.setAttribute("loja", loja);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/usuario/cadastro.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/loja/cadastroloja.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -181,6 +187,25 @@ public class AdminController extends HttpServlet {
 		String descricao = request.getParameter("descricao");
 		Loja loja = new Loja(0, emailresult, senhaloja, cnpj, nomeloja, descricao);
 		dao2.InsereLoja(loja);
+		response.sendRedirect("default");
+	}
+
+	private void updateloja(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		Integer idloja = Integer.parseInt(request.getParameter("idloja"));
+		String emailresult = request.getParameter("emailloja");
+		String senhaloja = request.getParameter("senhaloja");
+		String cnpj = request.getParameter("cnpj");
+		String nomeloja = request.getParameter("nomeloja");
+		String descricao = request.getParameter("descricao");
+		Loja loja = new Loja(idloja, emailresult, senhaloja, cnpj, nomeloja, descricao);
+		dao2.updateLoja(loja);
+		response.sendRedirect("default");
+	}
+
+	private void removeloja(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Integer idloja = Integer.parseInt(request.getParameter("idloja"));
+		dao2.deletaLoja(idloja);
 		response.sendRedirect("default");
 	}
 }

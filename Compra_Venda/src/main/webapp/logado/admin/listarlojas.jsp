@@ -39,7 +39,7 @@
                         <td>${loja.descricao}</td>
                         <td>
                             <a href="/<%= contextPath%>/admins/edicaoloja?emailloja=${loja.emailloja}"">Atualizar dados</a>
-                            <a href="/<%= contextPath%>/admins/remocaoloja?cnpj=${loja.cnpj}" onclick="return confirm('Tem certeza que deseja deletar esse usuário?');">Deletar</a>
+                            <a href="/<%= contextPath%>/admins/remocaoloja?idloja=${loja.idloja}" onclick="return confirm('Tem certeza que deseja deletar esse usuário?');">Deletar</a>
                         </td>
                         </tr>
                     </c:forEach>

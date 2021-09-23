@@ -57,13 +57,13 @@ public class LojaDAO extends GenericDAO{
         }
     }
 
-     public void deletaLoja(Loja loja){
+     public void deletaLoja(int idloja){
         try {
             Connection conn = this.getConnection();
-            String sql = "DELETE Loja WHERE cnpj = ?";
+            String sql = "DELETE FROM Loja WHERE idloja = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, loja.getCnpj());
-            statement.executeQuery();
+            statement.setInt(1, idloja);
+            statement.executeUpdate();
             statement.close();
             conn.close();
         }catch(SQLException e){
@@ -74,18 +74,18 @@ public class LojaDAO extends GenericDAO{
     public void updateLoja(Loja loja){
         try {
             Connection conn = this.getConnection();
-            String sql = "UPDATE Loja SET idloja = ?, emailloja = ?, senhaloja = ?, cnpj = ?, nomeloja = ?, descricao = ? WHERE cnpj = ?";
+            String sql = "UPDATE Loja SET emailloja = ?, senhaloja = ?, cnpj = ?, nomeloja = ?, descricao = ? WHERE idloja = ?";
 
             PreparedStatement statement = conn.prepareStatement(sql);
             
-            statement.setInt(1, loja.getIdloja());
-            statement.setString(2, loja.getEmailloja());
-            statement.setString(3, loja.getSenhaloja());            
-            statement.setString(4, loja.getCnpj());
-            statement.setString(5, loja.getNomeloja());
-            statement.setString(6, loja.getDescricao());
+            statement.setString(1, loja.getEmailloja());
+            statement.setString(2, loja.getSenhaloja());            
+            statement.setString(3, loja.getCnpj());
+            statement.setString(4, loja.getNomeloja());
+            statement.setString(5, loja.getDescricao());
+            statement.setInt(6, loja.getIdloja());
 
-            statement.executeQuery();
+            statement.executeUpdate();
             statement.close();
             conn.close();
         } catch(SQLException e){

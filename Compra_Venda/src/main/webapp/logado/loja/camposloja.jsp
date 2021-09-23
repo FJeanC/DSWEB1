@@ -35,6 +35,10 @@ pageEncoding="UTF-8"%>
     <td><input type="text" id="descricao" name="descricao" value="${loja.descricao}" required value="${loja.descricao}"/></td>
 </tr>
 <tr>
+    <td><label for="idloja"><font color="white">ID</font></label></td>
+    <td><input type="text" id="idloja" name="idloja" value="${loja.idloja}" required value="${loja.idloja}" readonly/></td>
+</tr>
+<tr>
     <td colspan="2" align="center"><input type="submit" value="Salva"
     /></td>
 </tr>
