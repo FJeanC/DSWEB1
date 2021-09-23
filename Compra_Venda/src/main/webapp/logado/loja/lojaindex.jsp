@@ -6,22 +6,25 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel = "stylesheet" type ="text/css" href="/logado/loja/loja.css">
+        <link rel = "stylesheet" type ="text/css" href="${pageContext.request.contextPath}/logado/loja/loja.css">
         <title>Menu do Sistema</title>
     </head>
     <body>
+        <div align="center">
         <h1>Página da Loja</h1>
+        </div>
         <p>Olá ${sessionScope.lojaLogada.nomeloja}</p>
         <ul>
             <li>
                 <a href="${pageContext.request.contextPath}/logout.jsp">Sair</a>
             </li>
         </ul>
-        <p>Seus carros:</p>
+        
         <a href="${pageContext.request.contextPath}/lojas/criar">Adicionar Carro</a>
         <br>
         <br>
-       
+        <div align="center">
+            <h3>Seus carros:</h3>
         <table class="styled-table">
 
             <thead>
@@ -30,7 +33,7 @@
                 <th>Modelo</th>
                 <th>Chassi</th>
                 <th>Ano</th>
-                <th>Quilometragem</th>
+                <th>KM</th>
                 <th>Descricao</th>
                 <th>valor</th>
                 <th>Ações</th>
@@ -59,5 +62,6 @@
         </tbody>
 
     </table>
+</div>
     </body>
 </html>
