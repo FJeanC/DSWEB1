@@ -6,10 +6,10 @@ pageEncoding="UTF-8"%>
     <caption>
         <c:choose>
             <c:when test="${usuario != null}">
-                Edição
+                <h2><font color="white">Edição</font></h2>
                 </c:when>
             <c:otherwise>
-                Cadastro
+                <h2><font color="white">Cadastro</font></h2>
             </c:otherwise>
         </c:choose>
 </caption>
@@ -18,43 +18,43 @@ pageEncoding="UTF-8"%>
 </c:if>
 
 <tr>
-    <td><label for="idcliente">ID</label></td>
+    <td><label for="idcliente"><font color="white">ID</font></label></td>
     <td><input type="number" id="idcliente" name="idcliente" size="5" value="${usuario.idcliente}" readonly /></td>
 </tr>
 <tr>
-    <td><label for="email">Email</label></td>
+    <td><label for="email"><font color="white">Email</font></label></td>
     <td><input type="text" id="email" name="email" size="45"
     required value="${usuario.email}" /></td>
 </tr>
 <tr>
-    <td><label for="senha">Senha</label></td>
+    <td><label for="senha"><font color="white">Senha</font></label></td>
     <td><input type="text" id="senha" name="senha" size="45" required
     value="${usuario.senha}" /></td>
 </tr>
 <tr>
-    <td><label for="cpf">CPF</label></td>
+    <td><label for="cpf"><font color="white">CPF</font></label></td>
     <td><input type="text" id="cpf" name="cpf" size="50" value="${usuario.cpf}" /></td>
 </tr>
 <tr>
-    <td><label for="nome">Nome</label></td>
+    <td><label for="nome"><font color="white">Nome</font></label></td>
     <td><input type="text" id="nome" name="nome" size="50" value="${usuario.nome}" /></td>
 </tr>
 <tr>
-    <td><label for="telefone">Telefone</label></td>
+    <td><label for="telefone"><font color="white">Telefone</font></label></td>
     <td><input type="text" id="telefone" name="telefone" size="50" value="${usuario.telefone}" /></td>
 </tr>
 <tr>
-    <td><label for="sexo">Sexo</label></td>
+    <td><label for="sexo"><font color="white">Sexo</font></label></td>
     <td><input type="text" id="sexo" name="sexo" required
     size="1" value="${usuario.sexo}" /></td>
 </tr>
 <tr>
-    <td><label for="datanasc">Data de Nascimento</label></td>
+    <td><label for="datanasc"><font color="white">Data de Nascimento</font></label></td>
     <td><input type="text" id="datanasc" name="datanasc" size="45" required
     value="${usuario.datanasc}" /></td>
 </tr>
 <tr>
-    <td><label for="papel">Papel</label></td>
+    <td><label for="papel"><font color="white">Papel</font></label></td>
     <td><select id="papel" name="papel">
         <option value="CLIENTE">CLIENTE</option>
         <option value="ADMIN">ADMIN</option>

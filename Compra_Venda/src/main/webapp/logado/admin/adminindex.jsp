@@ -31,7 +31,7 @@
                     <li><a href="./cadastro">Criar Cliente</li></a>
                     <li><a href="./listar">Listar Clientes</li></a>
                 </ol>
-                <p> CRUD de CLientes<br></p>
+                <p> CRUD de Lojas<br></p>
                 <ol>
                     <li><a href="#">Criar Loja</li></a>
                     <li><a href="#">Listar Lojas</li></a>
