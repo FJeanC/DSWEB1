@@ -4,7 +4,7 @@ public class Proposta {
     private int id;
     private float valorproposta;
     private String condicoes;
-    private String data;
+    private String dataatual;
     private String statusproposta;
     private int clienteproposta;
     private String placaproposta;
@@ -19,8 +19,8 @@ public class Proposta {
         this.valorproposta = valorproposta;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setDataatual(String dataatual) {
+        this.dataatual = dataatual;
     }
 
     public void setCondicoes(String condicoes) {
@@ -49,8 +49,8 @@ public class Proposta {
         return valorproposta;
     }
 
-    public String getData() {
-        return data;
+    public String getDataatual() {
+        return dataatual;
     }
 
     public String getCondicoes() {
@@ -69,10 +69,10 @@ public class Proposta {
         return placaproposta;
     }
    
-    public Proposta(int id, float valorproposta, String condicoes,String data, String statusproposta, int clienteproposta, String placaproposta){
+    public Proposta(int id, float valorproposta, String condicoes,String dataatual, String statusproposta, int clienteproposta, String placaproposta){
         this.id = id;
         this.valorproposta = valorproposta;
-        this.data = data;
+        this.dataatual = dataatual;
         this.condicoes = condicoes;
         this.statusproposta = statusproposta;
         this.clienteproposta = clienteproposta;
