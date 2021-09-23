@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.ufscar.dc.dsw.model.Loja;
-import br.ufscar.dc.dsw.util.Erro;
+//import br.ufscar.dc.dsw.util.Erro;
 import br.ufscar.dc.dsw.model.Carro;
 import br.ufscar.dc.dsw.dao.CarroDAO;
 
@@ -36,7 +36,7 @@ public class LojaController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
     	Loja loja = (Loja) request.getSession().getAttribute("lojaLogada");
-    	Erro erros = new Erro();
+    	//Erro erros = new Erro();
     	
     	if (loja == null) {
     		response.sendRedirect(request.getContextPath());

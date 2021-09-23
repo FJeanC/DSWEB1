@@ -68,7 +68,7 @@ public class LoginController extends HttpServlet {
 				}
 				else{
 					if(loja != null && user == null) {
-						if (loja.getSenhaLoja().equals(senha)) {
+						if (loja.getSenhaloja().equals(senha)) {
 						request.getSession().setAttribute("lojaLogada", loja);
 						response.sendRedirect("lojas/");
 						return;

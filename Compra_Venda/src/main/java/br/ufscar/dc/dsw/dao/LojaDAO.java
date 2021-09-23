@@ -18,7 +18,6 @@ public class LojaDAO extends GenericDAO{
             PreparedStatement statement = conn.prepareStatement(sql);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-
                 int id = resultSet.getInt("idloja");
                 String email = resultSet.getString("emailloja");
                 String senha = resultSet.getString("senhaloja");
@@ -27,7 +26,6 @@ public class LojaDAO extends GenericDAO{
                 String descricao = resultSet.getString("descricao");
                 Loja lojas = new Loja(id, email, senha,cnpj, nome, descricao);
                 listaLojas.add(lojas);
-                //MOSTRAR TODOS OS DADOS?
             }
             resultSet.close();
             statement.close();
@@ -46,14 +44,13 @@ public class LojaDAO extends GenericDAO{
 
             statement.setInt(1, loja.getIdloja());
             statement.setString(2, loja.getEmailloja());
-            statement.setString(3, loja.getSenhaLoja());
+            statement.setString(3, loja.getSenhaloja());
             statement.setString(4, loja.getCnpj());
             statement.setString(5, loja.getNomeloja());
             statement.setString(6, loja.getDescricao());
-            statement.executeQuery();
+            statement.executeUpdate();
             statement.close();
 
-            statement.close();
             conn.close();
         } catch(SQLException e){
             throw new RuntimeException(e);
@@ -83,7 +80,7 @@ public class LojaDAO extends GenericDAO{
             
             statement.setInt(1, loja.getIdloja());
             statement.setString(2, loja.getEmailloja());
-            statement.setString(3, loja.getSenhaLoja());            
+            statement.setString(3, loja.getSenhaloja());            
             statement.setString(4, loja.getCnpj());
             statement.setString(5, loja.getNomeloja());
             statement.setString(6, loja.getDescricao());

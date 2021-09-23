@@ -31,12 +31,10 @@
                     <li><a href="./cadastro">Criar Cliente</li></a>
                     <li><a href="./listar">Listar Clientes</li></a>
                 </ol>
-                <p> CRUD de CLientes<br></p>
+                <p> CRUD de Lojas<br></p>
                 <ol>
-                    <li><a href="#">Criar Loja</li></a>
-                    <li><a href="#">Listar Lojas</li></a>
-                    <li><a href="#">Atualizar Loja</li></a>
-                    <li><a href="#">Deletar Loja</li></a>
+                    <li><a href="./cadastrolojas">Criar Loja</li></a>
+                    <li><a href="./listarlojas">Listar Lojas</li></a>
                 </ol>
                 <br>
                 <li> <a href="${pageContext.request.contextPath}/logout.jsp">Sair</a></li>

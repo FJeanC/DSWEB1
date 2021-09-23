@@ -8,7 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Menu do Sistema</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type ="text/css" href="$pageContext.request.contextPath}/style.css">
+        <link rel = "stylesheet" type ="text/css" href="${pageContext.request.contextPath}/logado/loja/loja.css">
     </head>
     <body>
 
@@ -17,8 +17,9 @@
         <div align="center">
 			<h1 class="label">Gerenciamento de clientes</h1>
 		</div>
-        <div align=center">
-            <table border="1">				
+        <div align="center">
+            <table class="styled-table">		
+                <thead>
 					<tr>
 						<th>Email</th>
 						<th>senha</th>
@@ -31,10 +32,10 @@
 						<th>Ação</th>
 					</tr>
 
-
-        
+                </thead>		
+                <tbody>
         <c:forEach var="usuario" items="${requestScope.listaUsuarios}">
-        <tr>
+            <tr>
                 <td>${usuario.email}</td>
                 <td>${usuario.senha}</td>
                 <td>${usuario.cpf}</td>
@@ -48,7 +49,7 @@
                 </td>
                 </tr>
         </c:forEach>
-
+        </tbody>
         </table>
     </div>
             

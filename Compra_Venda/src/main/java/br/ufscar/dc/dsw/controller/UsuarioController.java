@@ -1,6 +1,7 @@
 package br.ufscar.dc.dsw.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -51,6 +52,9 @@ public class UsuarioController extends HttpServlet {
 					case "/insereproposta":
 						insereproposta(request, response);
 						break;
+					case "/lista":
+						listaproposta(request, response);
+						break;
 					default:
 						RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/usuario/userindex.jsp");
 						dispatcher.forward(request, response);
@@ -87,5 +91,13 @@ public class UsuarioController extends HttpServlet {
 		dao.inserePropostaDAO(proposta);
 
 		response.sendRedirect("default");
+	}
+
+	private void listaproposta(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
+		List<Proposta> listapropostas = dao.listaProposta(usuario);
+		request.setAttribute("listaProposta", listapropostas);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/usuario/listaproposta.jsp");
+		dispatcher.forward(request, response);
 	}
 }

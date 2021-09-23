@@ -24,7 +24,7 @@ public class Loja {
         this.senhaloja = senhaloja;
     }
 
-    public String getSenhaLoja() {
+    public String getSenhaloja() {
         return senhaloja;
     }
 

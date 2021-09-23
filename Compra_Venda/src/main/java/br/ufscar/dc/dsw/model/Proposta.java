@@ -15,7 +15,7 @@ public class Proposta {
         this.id = id;
     }
 
-    public void setValor(float valorproposta){
+    public void setValorproposta(float valorproposta){
         this.valorproposta = valorproposta;
     }
 
@@ -45,7 +45,7 @@ public class Proposta {
         return id;
     }
 
-    public float getValor() {
+    public float getValorproposta() {
         return valorproposta;
     }
 

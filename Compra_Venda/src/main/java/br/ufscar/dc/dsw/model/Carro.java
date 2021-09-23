@@ -25,7 +25,7 @@ public class Carro {
     
     //SET METHODS
 
-     public void setPlaca(String placa) {
+    public void setPlaca(String placa) {
         this.placa = placa;
     }
     public void setModelo(String modelo) {

@@ -17,16 +17,22 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
       <form action="insereproposta" method="POST">
         <label for="valorproposta">Valor</label><br>
         <input type="number" id="valorproposta" name="valorproposta" required><br>
+
         <label for="condicoes">Condicoes</label><br>
         <input type="text" id="condicoes" name="condicoes" required><br>
+
         <label for="dataatual">Data Atual</label><br>
         <input type="text" id="dataatual" name="dataatual" required value="<%= new Date() %>" readonly><br>
+
         <label for="placaproposta">Placa</label><br>
         <input type="text" id="placaproposta" name="placaproposta" required value="${sessionScope.placacomprar}" readonly><br>
+
         <label for="clienteproposta">Cliente</label><br>
         <input type="number" id="clienteproposta" name="clienteproposta" required value="${sessionScope.usuarioLogado.idcliente}" readonly><br>
+
         <label for="statusproposta">Status</label><br>
         <input type="text" id="statusproposta" name="statusproposta" required value="ABERTO" readonly><br>
+        
         <input type="submit" value="Enviar">
       </form>
     </div>

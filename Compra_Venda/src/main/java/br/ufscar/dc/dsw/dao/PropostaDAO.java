@@ -9,7 +9,7 @@ import java.util.List;
 
 public class PropostaDAO extends GenericDAO {
 
-    public List<Proposta> read(Usuario usuario) {
+    public List<Proposta> listaProposta(Usuario usuario) {
 
         List<Proposta> listaPropostas;
 
@@ -39,7 +39,7 @@ public class PropostaDAO extends GenericDAO {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setFloat(1, proposta.getValor());
+            statement.setFloat(1, proposta.getValorproposta());
             statement.setString(2, proposta.getCondicoes());
             statement.setString(3, proposta.getDataatual());
             statement.setString(4, proposta.getStatusproposta());

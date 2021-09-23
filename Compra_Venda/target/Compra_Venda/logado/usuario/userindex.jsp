@@ -12,7 +12,7 @@
         <ul>
             <li>   
                 <% String contextPath = request.getContextPath().replace("/", ""); %>
-                <a href="#">Lista de propostas</a><br>
+                <a href="./lista">Lista de propostas</a><br>
                 
                 <a href="${pageContext.request.contextPath}/logout.jsp">Sair</a>
             </li>

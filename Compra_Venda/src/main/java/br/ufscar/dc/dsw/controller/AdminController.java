@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.ufscar.dc.dsw.model.Usuario;
 import br.ufscar.dc.dsw.dao.UsuarioDAO;
+import br.ufscar.dc.dsw.model.Loja;
+import br.ufscar.dc.dsw.dao.LojaDAO;
 import br.ufscar.dc.dsw.util.Erro;
 import java.util.List;
 
@@ -20,9 +22,11 @@ public class AdminController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
 	private UsuarioDAO dao;
+	private LojaDAO dao2;
 	@Override
     public void init() {
         dao = new UsuarioDAO();
+		dao2 = new LojaDAO();
     }
 
     @Override
@@ -41,6 +45,7 @@ public class AdminController extends HttpServlet {
     	} else if (usuario.getPapel().equals("ADMIN")) {
 			String action = request.getPathInfo();
 			switch(action){
+				//Coisas user
 				case "/listar":
 					lista_usuarios(request,response);
 					break;
@@ -58,6 +63,19 @@ public class AdminController extends HttpServlet {
 					break;
 				case "/remocao":
 					remove(request, response);
+					break;
+				//Coisas loja
+				case "/listarlojas":
+					lista_lojas(request, response);
+					break;
+				case "/cadastrolojas":
+					apresentaFormCadastroLoja(request, response);
+					break;
+				case "/edicaolojas":
+					apresentaFormEdicaoLoja(request, response);
+					break;
+				case "/insereloja":
+					insereloja(request, response);
 					break;
 				default:
 					RequestDispatcher dps = request.getRequestDispatcher("/logado/admin/adminindex.jsp");
@@ -133,4 +151,36 @@ public class AdminController extends HttpServlet {
         dao.delete(iduser);
         response.sendRedirect("default");
     }
+
+	private void lista_lojas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Loja> listaLojas = dao2.ReadLojas();
+        request.setAttribute("listaLojas", listaLojas);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/listarlojas.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	private void apresentaFormEdicaoLoja(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String emailloja = (request.getParameter("emailloja"));
+        Loja loja = dao2.getByEmail(emailloja);
+        request.setAttribute("loja", loja);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/usuario/cadastro.jsp");
+        dispatcher.forward(request, response);
+    }
+
+	private void apresentaFormCadastroLoja(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/loja/cadastroloja.jsp");
+        dispatcher.forward(request, response);
+    }
+
+	private void insereloja(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		String emailresult = request.getParameter("emailloja");
+		String senhaloja = request.getParameter("senhaloja");
+		String cnpj = request.getParameter("cnpj");
+		String nomeloja = request.getParameter("nomeloja");
+		String descricao = request.getParameter("descricao");
+		Loja loja = new Loja(0, emailresult, senhaloja, cnpj, nomeloja, descricao);
+		dao2.InsereLoja(loja);
+		response.sendRedirect("default");
+	}
 }
