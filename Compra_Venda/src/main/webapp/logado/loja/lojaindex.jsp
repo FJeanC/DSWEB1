@@ -13,14 +13,19 @@
         <div align="center">
         <h1>Página da Loja</h1>
         </div>
+
+        <div align="center">
         <p>Olá ${sessionScope.lojaLogada.nomeloja}</p>
-        <ul>
-            <li>
-                <a href="${pageContext.request.contextPath}/logout.jsp">Sair</a>
-            </li>
-        </ul>
-        
+
         <a href="${pageContext.request.contextPath}/lojas/criar">Adicionar Carro</a>
+      
+        <a href="${pageContext.request.contextPath}/logout.jsp">Sair</a>
+       
+      
+        
+       
+
+    </div>
         <br>
         <br>
         <div align="center">
