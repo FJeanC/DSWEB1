@@ -10,13 +10,17 @@
     <body>
         <h1>Página da Loja</h1>
         <p>Olá ${sessionScope.lojaLogada.nomeloja}</p>
-        <c:forEach var="carros" items="${requestScope.listaCarrosLoja}">
-            <div class="teste"><img src="lista/teste_img.png" alt="carroalt"><h2 class="titulo_carro">${carro.modelo} ${carro.valor}</h2></div>    
-        </c:forEach>
         <ul>
             <li>
                 <a href="${pageContext.request.contextPath}/logout.jsp">Sair</a>
             </li>
         </ul>
+        <p>Seus carros:</p>
+        <a href="${pageContext.request.contextPath}/lojas/criar">Adicionar Carro</a>
+        <br>
+        <c:forEach var="carros" items="${requestScope.listaCarrosLoja}">
+            <br>
+            <div class="teste"><img src="/src/main/webapp/img/Chevette.jpg" alt="carroalt"><h2 class="titulo_carro">${carros.modelo} ${carros.valor}</h2></div>    
+        </c:forEach>
     </body>
 </html>
