@@ -30,8 +30,6 @@
                 <ol>
                     <li><a href="./cadastro">Criar Cliente</li></a>
                     <li><a href="./listar">Listar Clientes</li></a>
-                    <li><a href="#">Atualizar Cliente</li></a>
-                    <li><a href="#">Deletar Cliente</li></a>
                 </ol>
                 <p> CRUD de CLientes<br></p>
                 <ol>

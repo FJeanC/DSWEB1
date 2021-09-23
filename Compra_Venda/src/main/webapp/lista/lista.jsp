@@ -12,14 +12,29 @@ pageEncoding="UTF-8"%>
 </head>
 <body> 
     <%String contextPath = request.getContextPath().replace("/", ""); %>
-    <div id="Filtro">
-      <input type="text" name="Filtro" placeholder="Seleciona categoria" id="filtro_input">
+
+
+      <div class="main">
+        <div class="logo">
+          <img src="img/logo_free.jpg">
+        </div>
+        <ul class="top_bar">
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a class="active" href="#">Home</a></li>
+        </ul>
+      </div>
+
+      <br>
+    <div id="divFiltro">
+      <input type="text" name="Filtro" placeholder="Seleciona categoria" id="filtro">
       <input type="submit" name="Confirmar" id="">
     </div>
       <br>
     <div class="image-grid">
         <c:forEach var="carro" items="${requestScope.listaCarros}">
-            <div class="teste"><a href="carros"><img src="img/${carro.modelo}.jpg" alt="carroalt"></a><h2 class="titulo_carro">${carro.modelo} ${carro.valor}</h2></div>
+         
+            <div class="teste"><img src="img/${carro.modelo}.jpg" alt="carroalt"><h2 class="titulo_carro">${carro.modelo} R$${carro.valor}</h2></div>
         </c:forEach>
       </div>
   </body>
