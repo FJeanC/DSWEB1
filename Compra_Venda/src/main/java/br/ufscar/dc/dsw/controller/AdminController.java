@@ -39,6 +39,10 @@ public class AdminController extends HttpServlet {
 				lista_usuarios(request,response);
 				//RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/teste.jsp");
 				//dispatcher.forward(request, response);
+
+				case "/edicao":
+						edicao(request,response);
+					break;
 				default:
 				RequestDispatcher dps = request.getRequestDispatcher("/logado/admin/adminindex.jsp");
             	dps.forward(request, response);
@@ -62,4 +66,12 @@ public class AdminController extends HttpServlet {
 		dispatcher.forward(request, response);
     }
 
+	private void edicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String id = (request.getParameter("email"));
+		UsuarioDAO dao = new UsuarioDAO();
+        Usuario user = dao.getByEmail(id);
+        request.setAttribute("usuario", user);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/edicao.jsp");
+        dispatcher.forward(request, response);
+    }
 }

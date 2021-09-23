@@ -27,7 +27,7 @@ public class CarroDAO extends GenericDAO {
             statement.setInt(5, carro.getKm());
             statement.setString(6, carro.getDescricao());
             statement.setFloat(7, carro.getValor());
-            statement.setInt(8, carro.getLojacarro());
+            statement.setString(8, carro.getLojacarro());
             statement.executeUpdate();
 
             statement.close();
@@ -56,7 +56,7 @@ public class CarroDAO extends GenericDAO {
                 int km = resultSet.getInt("km");
                 String descricaocarro = resultSet.getString("descricaocarro");
                 float valor = resultSet.getFloat("valor");
-                int idloja = resultSet.getInt("lojacarro");
+                String idloja = resultSet.getString("lojacarro");
                 Carro carro = new Carro(placa, modelo,chassi, ano, km, descricaocarro, valor,idloja);
                 listaCarro.add(carro);
 
@@ -71,7 +71,7 @@ public class CarroDAO extends GenericDAO {
         return listaCarro;
     }
 
-    public List<Carro> getCarsLoja(int loja) {
+    public List<Carro> getCarsLoja(String email) {
 
         List<Carro> listaCarro = new ArrayList<>();
 
@@ -81,8 +81,8 @@ public class CarroDAO extends GenericDAO {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setInt(1, loja);
-            ResultSet resultSet = statement.executeQuery(sql);
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 String placa = resultSet.getString("placa");
                 String modelo = resultSet.getString("modelo");
@@ -91,7 +91,7 @@ public class CarroDAO extends GenericDAO {
                 int km = resultSet.getInt("km");
                 String descricaocarro = resultSet.getString("descricaocarro");
                 float valor = resultSet.getFloat("valor");
-                int idloja = resultSet.getInt("lojacarro");
+                String idloja = resultSet.getString("lojacarro");
                 Carro carro = new Carro(placa, modelo,chassi, ano, km, descricaocarro, valor,idloja);
                 listaCarro.add(carro);
             }
@@ -135,7 +135,7 @@ public class CarroDAO extends GenericDAO {
             statement.setInt(5, carro.getKm());
             statement.setString(6, carro.getDescricao());
             statement.setFloat(7, carro.getValor());
-            statement.setInt(8, carro.getLojacarro());
+            statement.setString(8, carro.getLojacarro());
 
             //PRECISO DISSO?
             statement.setString(9, carro.getPlaca());
@@ -169,7 +169,7 @@ public class CarroDAO extends GenericDAO {
                 int km = resultSet.getInt("km");
                 String descricaocarro = resultSet.getString("descricaocarro");
                 float valor = resultSet.getFloat("valor");
-                int idloja = resultSet.getInt("lojacarro");
+                String idloja = resultSet.getString("lojacarro");
 
                 carro = new Carro(placa_carro, modelo,chassi, ano, km, descricaocarro, valor, idloja);
             }

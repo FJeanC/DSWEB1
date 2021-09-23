@@ -42,7 +42,7 @@ public class LojaController extends HttpServlet {
     		response.sendRedirect(request.getContextPath());
         }
         try {
-            listacarrosloja(request, response, loja.getIdloja());
+            listacarrosloja(request, response, loja.getEmailloja());
         } catch (RuntimeException | IOException | ServletException  e) {
             throw new ServletException(e);
         }
@@ -50,7 +50,7 @@ public class LojaController extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void listacarrosloja(HttpServletRequest request, HttpServletResponse response, int idloja) throws ServletException, IOException {
+    private void listacarrosloja(HttpServletRequest request, HttpServletResponse response, String idloja) throws ServletException, IOException {
         List<Carro> listaloja = dao.getCarsLoja(idloja);
         request.setAttribute("listaCarrosLoja", listaloja);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/loja/lojaindex.jsp");

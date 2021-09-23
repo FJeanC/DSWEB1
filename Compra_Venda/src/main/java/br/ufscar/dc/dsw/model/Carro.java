@@ -9,9 +9,9 @@ public class Carro {
     private int km;
     private String descricaocarro;
     private float valor;
-    private int lojacarro;
+    private String lojacarro;
     
-    public Carro(String placa, String modelo, String chassi, int ano, int km, String descricaocarro, float valor, int lojacarro){
+    public Carro(String placa, String modelo, String chassi, int ano, int km, String descricaocarro, float valor, String lojacarro){
 
         this.placa = placa;
         this.modelo = modelo;
@@ -46,7 +46,7 @@ public class Carro {
     public void setValor(float valor) {
         this.valor = valor;
     }
-    public void setLojacarro(int lojacarro) {
+    public void setLojacarro(String lojacarro) {
         this.lojacarro = lojacarro;
     }
     //GET METHODS
@@ -73,7 +73,7 @@ public class Carro {
         return valor;
     }
 
-    public int getLojacarro() {
+    public String getLojacarro() {
         return lojacarro;
     }
     

@@ -19,7 +19,7 @@ CREATE TABLE Usuario(
 
 CREATE TABLE Loja(
     idloja INT NOT NULL auto_increment,
-    emailloja VARCHAR(64) NOT NULL,
+    emailloja VARCHAR(64) NOT NULL UNIQUE,
     senhaloja VARCHAR(64) NOT NULL,
     cnpj VARCHAR(15),
     nomeloja VARCHAR(64),
@@ -35,8 +35,8 @@ CREATE TABLE Carro(
     km INTEGER,
     descricaocarro VARCHAR(256),
     valor FLOAT,
-    lojacarro INT,
-    FOREIGN KEY (lojacarro) REFERENCES Loja(idloja) ON DELETE CASCADE
+    lojacarro VARCHAR(64),
+    FOREIGN KEY (lojacarro) REFERENCES Loja(emailloja) ON DELETE CASCADE
 );
 
 CREATE TABLE Proposta(
