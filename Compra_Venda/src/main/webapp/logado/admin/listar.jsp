@@ -33,19 +33,18 @@
 
 
         
-        <c:forEach var="user" items="${requestScope.listaUsuarios}">
+        <c:forEach var="usuario" items="${requestScope.listaUsuarios}">
         <tr>
-                <td>${user.email}</td>
-                <td>${user.senha}</td>
-                <td>${user.cpf}</td>
-                <td>${user.nome}</td>
-                <td>${user.telefone}</td>
-                <td>${user.sexo}</td>
-                <td>${user.datanasc}</td>
-                <td>${user.papel}</td>
-                <td><a href="/<%= contextPath%>/usuarios/edicao?id=${usuario.email}"">Atualizar dados</a>
-                    <a href="/<%= contextPath%>/usuarios/remocao?id=${usuario.email}" onclick="return confirm('Tem certeza que deseja deletar esse usuário?');">Deletar</a>
-                    
+                <td>${usuario.email}</td>
+                <td>${usuario.senha}</td>
+                <td>${usuario.cpf}</td>
+                <td>${usuario.nome}</td>
+                <td>${usuario.telefone}</td>
+                <td>${usuario.sexo}</td>
+                <td>${usuario.datanasc}</td>
+                <td>${usuario.papel}</td>
+                <td><a href="/<%= contextPath%>/admins/edicao?email=${usuario.email}"">Atualizar dados</a>
+                    <a href="/<%= contextPath%>/admins/remocao?email=${usuario.email}" onclick="return confirm('Tem certeza que deseja deletar esse usuário?');">Deletar</a>
                 </td>
                 </tr>
         </c:forEach>

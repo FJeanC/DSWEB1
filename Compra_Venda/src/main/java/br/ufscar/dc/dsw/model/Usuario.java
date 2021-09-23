@@ -1,7 +1,7 @@
 package br.ufscar.dc.dsw.model;
 
 public class Usuario {
-    private int id;
+    private int idcliente;
     private String email;
     private String senha;
     private String cpf;
@@ -11,8 +11,12 @@ public class Usuario {
     private String datanasc;
     private String papel;
 
-    public int getId() {
-        return id;
+    public int getIdcliente() {
+        return idcliente;
+    }
+
+    public void setIdCliente (int idcliente) {
+        this.idcliente = idcliente;
     }
 
     public String getEmail() {
@@ -79,8 +83,8 @@ public class Usuario {
         return papel;
     }
 
-    public Usuario(int id, String email, String senha, String cpf, String nome, String telefone, String sexo, String datanasc, String papel) {
-        this.id = id;
+    public Usuario(int idcliente, String email, String senha, String cpf, String nome, String telefone, String sexo, String datanasc, String papel) {
+        this.idcliente = idcliente;
         this.email = email;
         this.senha = senha;
         this.cpf = cpf;
