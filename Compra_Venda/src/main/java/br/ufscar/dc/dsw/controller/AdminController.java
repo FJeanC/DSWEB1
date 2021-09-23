@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.ufscar.dc.dsw.model.Usuario;
+import br.ufscar.dc.dsw.dao.UsuarioDAO;
 import br.ufscar.dc.dsw.util.Erro;
+import java.util.List;
 
 @WebServlet(urlPatterns = "/admins/*")
 public class AdminController extends HttpServlet {
@@ -31,8 +33,18 @@ public class AdminController extends HttpServlet {
     	if (usuario == null) {
     		response.sendRedirect(request.getContextPath());
     	} else if (usuario.getPapel().equals("ADMIN")) {
-    		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/adminindex.jsp");
-            dispatcher.forward(request, response);
+			String action = request.getPathInfo();
+			switch(action){
+				case "/teste.jsp":
+				lista_usuarios(request,response);
+				//RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/teste.jsp");
+				//dispatcher.forward(request, response);
+				default:
+				RequestDispatcher dps = request.getRequestDispatcher("/logado/admin/adminindex.jsp");
+            	dps.forward(request, response);
+			break;
+			}
+    		
     	} else {
     		erros.add("Acesso não autorizado!");
     		erros.add("Apenas Papel [ADMIN] tem acesso a essa página");
@@ -41,4 +53,13 @@ public class AdminController extends HttpServlet {
     		rd.forward(request, response);
     	}
     }
+
+	 private void lista_usuarios(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		UsuarioDAO dao = new UsuarioDAO();
+        List<Usuario> listaUsuarios = dao.getAll();
+        request.setAttribute("listaUsuarios", listaUsuarios);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/teste.jsp");
+		dispatcher.forward(request, response);
+    }
+
 }
