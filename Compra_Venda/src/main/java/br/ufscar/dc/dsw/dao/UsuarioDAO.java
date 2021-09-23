@@ -71,14 +71,14 @@ public class UsuarioDAO extends GenericDAO {
         return listaUsuarios;
     }
 
-    public void delete(Usuario usuario) {
-        String sql = "DELETE FROM Usuario where idcliente = ?";
+    public void delete(int id) {
+        String sql = "DELETE FROM Usuario WHERE idcliente = ?";
 
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setInt(1, usuario.getIdcliente());
+            statement.setInt(1, id);
             statement.executeUpdate();
 
             statement.close();

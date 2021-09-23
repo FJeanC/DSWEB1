@@ -56,6 +56,9 @@ public class AdminController extends HttpServlet {
 				case "/atualizacao":
 					updateuser(request, response);
 					break;
+				case "/remocao":
+					remove(request, response);
+					break;
 				default:
 					RequestDispatcher dps = request.getRequestDispatcher("/logado/admin/adminindex.jsp");
             		dps.forward(request, response);
@@ -108,7 +111,26 @@ public class AdminController extends HttpServlet {
         response.sendRedirect("default");
     }
 
-	private void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void updateuser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		Integer id_user = Integer.parseInt(request.getParameter("idcliente"));
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+        String CPF = request.getParameter("cpf");
+        String nome = request.getParameter("nome");
+        String telefone = request.getParameter("telefone");
+        String sexo = request.getParameter("sexo");
+        String nascimento = request.getParameter("datanasc");
+        String papel = request.getParameter("papel");
+		Usuario usuario = new Usuario(id_user,email, senha, CPF, nome, telefone, sexo, nascimento, papel);
 
+		dao.update(usuario);
+		response.sendRedirect("default");
 	}
+
+	private void remove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Integer iduser = Integer.parseInt(request.getParameter("idcliente"));
+        dao.delete(iduser);
+        response.sendRedirect("default");
+    }
 }

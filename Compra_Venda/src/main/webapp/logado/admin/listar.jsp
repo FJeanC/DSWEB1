@@ -44,7 +44,7 @@
                 <td>${usuario.datanasc}</td>
                 <td>${usuario.papel}</td>
                 <td><a href="/<%= contextPath%>/admins/edicao?email=${usuario.email}"">Atualizar dados</a>
-                    <a href="/<%= contextPath%>/admins/remocao?email=${usuario.email}" onclick="return confirm('Tem certeza que deseja deletar esse usuário?');">Deletar</a>
+                    <a href="/<%= contextPath%>/admins/remocao?idcliente=${usuario.idcliente}" onclick="return confirm('Tem certeza que deseja deletar esse usuário?');">Deletar</a>
                 </td>
                 </tr>
         </c:forEach>
