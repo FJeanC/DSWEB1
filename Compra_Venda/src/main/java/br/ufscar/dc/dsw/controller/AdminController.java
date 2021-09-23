@@ -35,13 +35,18 @@ public class AdminController extends HttpServlet {
     	} else if (usuario.getPapel().equals("ADMIN")) {
 			String action = request.getPathInfo();
 			switch(action){
-				case "/teste.jsp":
+				case "/listar":
 				lista_usuarios(request,response);
 				//RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/teste.jsp");
 				//dispatcher.forward(request, response);
 
 				case "/edicao":
 						edicao(request,response);
+				case "/cadastro":
+					apresentaFormCadastro(request,response,usuario.getEmail());
+					break;
+				case "/insere":
+					insere(request, response);
 					break;
 				default:
 				RequestDispatcher dps = request.getRequestDispatcher("/logado/admin/adminindex.jsp");
@@ -73,5 +78,29 @@ public class AdminController extends HttpServlet {
         request.setAttribute("usuario", user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/edicao.jsp");
         dispatcher.forward(request, response);
+    }
+
+	 private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response, String id) throws ServletException, IOException {
+        request.setAttribute("email", id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/usuario/cadastro.jsp");
+        dispatcher.forward(request, response);
+    }
+
+	private void insere(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UsuarioDAO dao = new UsuarioDAO();
+		request.setCharacterEncoding("UTF-8");
+		int id_user = Integer.parseInt(request.getParameter("idcliente"));
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+        String CPF = request.getParameter("cpf");
+        String nome = request.getParameter("nome");
+        String telefone = request.getParameter("telefone");
+        String sexo = request.getParameter("sexo");
+        String nascimento = request.getParameter("datanasc");
+        String papel = request.getParameter("papel");
+        Usuario usuario = new Usuario(id_user,email, senha, CPF, nome, telefone, sexo, nascimento, papel);
+
+        dao.insert(usuario);
+        response.sendRedirect("default");
     }
 }
