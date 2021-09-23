@@ -10,6 +10,18 @@
       <link rel = "stylesheet" type ="text/css" href = "style.css">
    </head>
    <body class="login">
+
+      <div class="main">
+         <div class="logo">
+           <img src="img/logo_free.jpg">
+         </div>
+         <ul class="top_bar">
+           <li><a href="contact.html">Contact</a></li>
+           <li><a href="about.html">About</a></li>
+           <li><a class="active" href="index.jsp">Home</a></li>
+         </ul>
+       </div>
+
       <div class="title">
          <h1>Sign In</h1>
       </div>

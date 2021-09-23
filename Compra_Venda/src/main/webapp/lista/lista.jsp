@@ -34,7 +34,7 @@ pageEncoding="UTF-8"%>
     <div class="image-grid">
         <c:forEach var="carro" items="${requestScope.listaCarros}">
          
-            <div class="teste"><img src="img/${carro.modelo}.jpg" alt="carroalt"><h2 class="titulo_carro">${carro.modelo} R$${carro.valor}</h2></div>
+            <a href="#"><div class="teste"><img src="img/${carro.modelo}.jpg" alt="carroalt"><h2 class="titulo_carro">${carro.modelo} R$${carro.valor}</h2></div>
         </c:forEach>
       </div>
   </body>
