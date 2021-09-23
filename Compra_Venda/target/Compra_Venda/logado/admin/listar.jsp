@@ -8,7 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Menu do Sistema</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel = "stylesheet" type ="text/css" href="${pageContext.request.contextPath}/logado/loja/loja.css">
+        <link rel = "stylesheet" type ="text/css" href="${pageContext.request.contextPath}/logado/loja/lojaindex.css">
     </head>
     <body>
 
