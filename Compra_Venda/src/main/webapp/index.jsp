@@ -18,8 +18,8 @@ pageEncoding="UTF-8"%>
         <img src="img/logo_free.jpg">
       </div>
       <ul class="top_bar">
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">TESTEE</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a class="active" href="#">Home</a></li>
       </ul>
     </div>
