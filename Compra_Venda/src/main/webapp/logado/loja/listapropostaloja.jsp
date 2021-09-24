@@ -39,8 +39,8 @@
                             <td>${proposta.placaproposta}</td>
                             <td>${proposta.statusproposta}</td>
                             <td>
-                                <a href="${pageContext.request.contextPath}/lojas/aceitaproposta?id=${proposta.id}" onclick="return confirm('Tem certeza que deseja aceitar essa prposta?');">Aceitar</a>
-                                <a href="${pageContext.request.contextPath}/lojas/recusaproposta?id=${proposta.id}" onclick="return confirm('Tem certeza que deseja recusar essa prposta?');">Recusar</a>
+                                <a href="${pageContext.request.contextPath}/lojas/aceitaproposta?id=${proposta.id}" onclick="return confirm('Tem certeza que deseja aceitar essa proposta?');">Aceitar</a>
+                                <a href="${pageContext.request.contextPath}/lojas/recusaproposta?id=${proposta.id}" onclick="return confirm('Tem certeza que deseja recusar essa proposta?');">Recusar</a>
                             </td>
                         </tr>
                     </c:forEach>

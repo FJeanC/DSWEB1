@@ -21,7 +21,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     </div>
     <div align="center">
         <form method="post" action="addfile" enctype="multipart/form-data">
-            Escolha um arquivo: <input type="file" name="multiPartServlet" />
+            <h2>Escolha um arquivo:</h2> <input type="file" name="multiPartServlet" />
             <input type="submit" value="Upload" />
         </form>
     </div>
