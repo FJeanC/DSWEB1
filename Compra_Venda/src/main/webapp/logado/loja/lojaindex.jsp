@@ -19,7 +19,9 @@
 
         <a href="${pageContext.request.contextPath}/lojas/criar">Adicionar Carro</a>
       
+        <a href="#">Listar Propostas</a>
         <a href="${pageContext.request.contextPath}/logout.jsp">Sair</a>
+
        
       
         
