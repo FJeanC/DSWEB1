@@ -1,6 +1,7 @@
 package br.ufscar.dc.dsw.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -13,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import br.ufscar.dc.dsw.model.Loja;
 //import br.ufscar.dc.dsw.util.Erro;
 import br.ufscar.dc.dsw.model.Carro;
+import br.ufscar.dc.dsw.model.Proposta;
 import br.ufscar.dc.dsw.dao.CarroDAO;
+import br.ufscar.dc.dsw.dao.PropostaDAO;
 
 @WebServlet(urlPatterns = "/lojas/*")
 public class LojaController extends HttpServlet {
@@ -21,10 +24,12 @@ public class LojaController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private CarroDAO dao;
+    private PropostaDAO dao2;
 
     @Override
     public void init() {
         dao = new CarroDAO();
+        dao2 = new PropostaDAO();
     }
 
     @Override
@@ -61,6 +66,15 @@ public class LojaController extends HttpServlet {
                     break;
                 case "/remove":
                     remove(request, response);
+                    break;
+                case "/propostaloja":
+                    listapropostaloja(request, response, loja.getEmailloja());
+                    break;
+                case "/aceitaproposta":
+                    alteraproposta(request, response, true);
+                    break;
+                case "/recusaproposta":
+                    alteraproposta(request, response, false);
                     break;
                 default:
                     listacarrosloja(request, response, loja.getEmailloja());
@@ -128,6 +142,30 @@ public class LojaController extends HttpServlet {
     private void remove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String placa = request.getParameter("placa");
         dao.deleteCar(placa);
+        response.sendRedirect("default");
+    }
+
+    private void listapropostaloja(HttpServletRequest request, HttpServletResponse response, String emailloja) throws ServletException, IOException {
+        List<Proposta> todaspropostas = dao2.getAll();
+        List<Carro> carrosloja = dao.getCarsLoja(emailloja);
+        List<Proposta> propostafiltrado = new ArrayList<>();
+        for (int i=0; i<todaspropostas.size(); i++) {
+            Proposta iterador = todaspropostas.get(i);
+            for (int j=0; j<carrosloja.size(); j++) {
+                Carro carroiterador = carrosloja.get(j);
+                if (iterador.getPlacaproposta().equals(carroiterador.getPlaca())) {
+                    propostafiltrado.add(iterador);
+                }
+            }
+        }
+        request.setAttribute("listaProposta", propostafiltrado);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/loja/listapropostaloja.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void alteraproposta(HttpServletRequest request, HttpServletResponse response, Boolean aceita) throws ServletException, IOException {
+        Integer idproposta = Integer.parseInt(request.getParameter("id"));
+        dao2.updateProposta(idproposta, aceita);
         response.sendRedirect("default");
     }
 }

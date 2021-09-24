@@ -245,7 +245,21 @@ ol {
     text-align: center;
     font-weight: bold;
     border-radius: 2em;
-    transition: all .3s ease-out;
+    transition: all .5s ease-out;
   }
+
+.PagUsr {
+    background-image: url(img/jdm2.jpg);
+    background-size: cover;
+}
+
+.containeruser {
+    width: 30%;
+    height: 500px;
+    background: rgb(235, 235, 235);
+    margin: 0 auto;
+    border: 2px solid #fff;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
 
   

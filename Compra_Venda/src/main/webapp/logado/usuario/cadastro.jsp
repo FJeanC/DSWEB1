@@ -27,7 +27,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
           </form>
         </c:when>
         <c:otherwise>
-          <form action="insereloja" method="post">
+          <form action="insere" method="post">
             <%@include file="camposcliente.jsp"%>
           </form>
         </c:otherwise>

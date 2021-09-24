@@ -19,7 +19,7 @@ pageEncoding="UTF-8"%>
       </div>
       <ul class="top_bar">
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="logins">Login</a></li>
         <li><a class="active" href="#">Home</a></li>
       </ul>
     </div>

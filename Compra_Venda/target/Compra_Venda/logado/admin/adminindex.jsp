@@ -18,8 +18,8 @@
               </div>
               <ul class="top_bar">
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a class="active" href="index.jsp">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/logins">Login</a></li>
+                <li><a class="active" href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
               </ul>
             </div>
         

@@ -52,7 +52,27 @@ public class PropostaDAO extends GenericDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    } 
+    }
+    
+    public void updateProposta(int idproposta, Boolean aceita) {
+        String sql = "UPDATE Proposta SET statusproposta = ? WHERE id = ?";
+        try {
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            if (aceita) {
+                statement.setString(1, "ACEITO");
+            } else {
+                statement.setString(1, "NAO ACEITO");
+            }
+            statement.setInt(2, idproposta);
+            statement.executeUpdate();
+
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public List<Proposta> getAll() {
 
