@@ -1,15 +1,18 @@
 package br.ufscar.dc.dsw.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import br.ufscar.dc.dsw.model.Loja;
 //import br.ufscar.dc.dsw.util.Erro;
@@ -17,7 +20,9 @@ import br.ufscar.dc.dsw.model.Carro;
 import br.ufscar.dc.dsw.model.Proposta;
 import br.ufscar.dc.dsw.dao.CarroDAO;
 import br.ufscar.dc.dsw.dao.PropostaDAO;
+import br.ufscar.dc.dsw.util.Constants;
 
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 @WebServlet(urlPatterns = "/lojas/*")
 public class LojaController extends HttpServlet {
 
@@ -76,6 +81,12 @@ public class LojaController extends HttpServlet {
                 case "/recusaproposta":
                     alteraproposta(request, response, false);
                     break;
+                case "/formfile":
+                    apresentaFormFile(request, response);
+                    break;
+                case "/addfile":
+                    uploadarquivo(request, response);
+                    break;
                 default:
                     listacarrosloja(request, response, loja.getEmailloja());
                     break;
@@ -112,6 +123,31 @@ public class LojaController extends HttpServlet {
         Carro carro = new Carro(placa, modelo, chassi, ano, km, descricaocarro, valor, idloja);
         dao.insertCar(carro);
         response.sendRedirect("default");
+    }
+
+    private void apresentaFormFile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/loja/formfile.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void uploadarquivo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //Implementar file aqui
+        String uploadPath = getServletContext().getRealPath("") + File.separator + Constants.UPLOAD_DIRECTORY;
+        File uploadDir = new File(uploadPath);
+        if (!uploadDir.exists()) uploadDir.mkdir();
+        for (Part part : request.getParts()) {
+            String fileName = part.getSubmittedFileName();
+            part.write(uploadPath + File.separator + fileName);
+        }
+        response.sendRedirect("default");
+    }
+
+    private String getFileName(Part part) {
+        for (String content : part.getHeader("content-disposition").split(";")) {
+            if (content.trim().startsWith("filename"))
+                return content.substring(content.indexOf("=") + 2, content.length() - 1);
+            }
+        return Constants.DEFAULT_FILENAME;
     }
 
     private void apresentaFormEditar(HttpServletRequest request, HttpServletResponse response, String idloja) throws ServletException, IOException {

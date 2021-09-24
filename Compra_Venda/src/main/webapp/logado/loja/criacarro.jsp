@@ -22,7 +22,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <div align="center">
       <c:choose>
         <c:when test="${carro != null}">
-          <form action="update" method="post">
+          <form action="update"method="post">
             <%@include file="camposcarro.jsp"%>
           </form>
         </c:when>

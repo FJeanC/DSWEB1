@@ -18,7 +18,7 @@
         <p>Olá ${sessionScope.lojaLogada.nomeloja}</p>
 
         <a href="${pageContext.request.contextPath}/lojas/criar">Adicionar Carro</a>
-      
+        <a href="${pageContext.request.contextPath}/lojas/formfile">Adicionar Foto</a>
         <a href="${pageContext.request.contextPath}/lojas/propostaloja">Listar Propostas</a>
         <a href="${pageContext.request.contextPath}/logout.jsp">Sair</a>
 
