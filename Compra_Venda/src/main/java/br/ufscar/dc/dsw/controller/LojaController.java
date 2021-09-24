@@ -142,14 +142,6 @@ public class LojaController extends HttpServlet {
         response.sendRedirect("default");
     }
 
-    private String getFileName(Part part) {
-        for (String content : part.getHeader("content-disposition").split(";")) {
-            if (content.trim().startsWith("filename"))
-                return content.substring(content.indexOf("=") + 2, content.length() - 1);
-            }
-        return Constants.DEFAULT_FILENAME;
-    }
-
     private void apresentaFormEditar(HttpServletRequest request, HttpServletResponse response, String idloja) throws ServletException, IOException {
         request.setAttribute("emailLoja", idloja);
         String placa = request.getParameter("placa");
