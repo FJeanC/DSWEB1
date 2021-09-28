@@ -43,9 +43,9 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
         <input type="submit" value="Enviar">
       </form>
     </div>
-    <c:if test="${!empty requestScope.mensagens}">
+    <c:if test="${mensagens.existeErros}">
       <ul class="erro">
-        <c:forEach items="${requestScope.mensagens}" var="mensagem">
+        <c:forEach var="mensagem" items="${mensagens.erros}">
           <li>${mensagem}</li>
         </c:forEach>
       </ul>
