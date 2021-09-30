@@ -88,9 +88,28 @@ public class UsuarioController extends HttpServlet {
 		String placa = request.getParameter("placaproposta");
 
 		Proposta proposta = new Proposta(0, valor, condicao, data, status, idcliente, placa);
-		dao.inserePropostaDAO(proposta);
 
-		response.sendRedirect("default");
+		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
+		List<Proposta> listapropostas = dao.listaProposta(usuario);
+		Boolean repetida = false;
+		for (int i=0; i<listapropostas.size(); i++) {
+			Proposta iterador = listapropostas.get(i);
+			if (iterador.getPlacaproposta().equals(proposta.getPlacaproposta())) {
+				repetida = true;
+			}
+		}
+		if (repetida) {
+			Erro erros = new Erro();
+			erros.add("Você já fez uma proposta neste carro");
+			request.getSession().invalidate();
+			request.setAttribute("mensagens", erros);
+			//response.sendRedirect("usuarios/fazproposta");
+			RequestDispatcher rd = request.getRequestDispatcher("/logado/usuario/criaproposta.jsp");
+			rd.forward(request, response);
+		} else {
+			dao.inserePropostaDAO(proposta);
+			response.sendRedirect("default");
+		}
 	}
 
 	private void listaproposta(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

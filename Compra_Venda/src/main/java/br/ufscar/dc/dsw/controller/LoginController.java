@@ -66,21 +66,20 @@ public class LoginController extends HttpServlet {
 						erros.add("Senha Inválida!");
 					}
 				}
-				else{
+				else {
 					if(loja != null && user == null) {
 						if (loja.getSenhaloja().equals(senha)) {
 						request.getSession().setAttribute("lojaLogada", loja);
 						response.sendRedirect("lojas/");
 						return;
+						} else {
+							erros.add("Senha inválida!");
+						}
 					} else {
-						erros.add("Senha inválida!");
+						erros.add("Usuário não encontrado!");
 					}
-					
-				} else {
-					erros.add("Usuário não encontrado!");
 				}
 			}
-		}
 		}
 		request.getSession().invalidate();
 
