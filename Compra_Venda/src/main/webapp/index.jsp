@@ -2,6 +2,7 @@
 pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -17,20 +18,21 @@ pageEncoding="UTF-8"%>
       <div class="logo">
         <img src="img/logo_free.jpg">
       </div>
+      <fmt:bundle basename="messages">
       <ul class="top_bar">
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="logins">Login</a></li>
-        <li><a class="active" href="#">Home</a></li>
+        <li><a href="contact.html"><fmt:message key="contact"/></a></li>
+        <li><a href="logins"><fmt:message key="login"/></a></li>
+        <li><a class="active" href="#"><fmt:message key="home"/></a></li>
       </ul>
     </div>
    </header>
 
  
      <div class="action_btn">
-        <a href="logins" class="btn">SELL</a>
-        <a href="carros" class="btn">BUY</a>
+        <a href="logins" class="btn"><fmt:message key="sell_btn"/></a>
+        <a href="carros" class="btn"><fmt:message key="buy_btn"/></a>
      </div>
-
+    </fmt:bundle>
 
   </body>
 </html>

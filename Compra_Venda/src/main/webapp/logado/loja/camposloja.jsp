@@ -6,10 +6,10 @@ pageEncoding="UTF-8"%>
     <caption>
         <c:choose>
             <c:when test="${loja != null}">
-                <h2><font color="white">Edição</font></h2>
+                <h2><font color="white"><fmt:message key="edit"/></font></h2>
                 </c:when>
             <c:otherwise>
-                <h2><font color="white">Cadastro</font></h2>
+                <h2><font color="white"><fmt:message key="registration"/></font></h2>
             </c:otherwise>
         </c:choose>
 </caption>
@@ -19,7 +19,7 @@ pageEncoding="UTF-8"%>
     <td><input type="text" id="emailloja" name="emailloja" value="${loja.emailloja}" required value="${loja.emailloja}"/></td>
 </tr>
 <tr>
-    <td><label for="senhaloja"><font color="white">Senha</font></label></td>
+    <td><label for="senhaloja"><font color="white"><fmt:message key="password"/></font></label></td>
     <td><input type="text" id="senhaloja" name="senhaloja" value="${loja.senhaloja}" required value="${loja.senhaloja}"/></td>
 </tr>
 <tr>
@@ -27,11 +27,11 @@ pageEncoding="UTF-8"%>
     <td><input type="text" id="cnpj" name="cnpj" value="${loja.cnpj}" required value="${loja.cnpj}"/></td>
 </tr>
 <tr>
-    <td><label for="nomeloja"><font color="white">Nome</font></label></td>
+    <td><label for="nomeloja"><font color="white"><fmt:message key="name"/></font></label></td>
     <td><input type="text" id="nomeloja" name="nomeloja" value="${loja.nomeloja}" required value="${loja.nomeloja}"/></td>
 </tr>
 <tr>
-    <td><label for="descricao"><font color="white">Descrição</font></label></td>
+    <td><label for="descricao"><font color="white"><fmt:message key="description"/></font></label></td>
     <td><input type="text" id="descricao" name="descricao" value="${loja.descricao}" required value="${loja.descricao}"/></td>
 </tr>
 <tr>

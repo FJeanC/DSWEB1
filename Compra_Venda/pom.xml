@@ -95,6 +95,24 @@
 					<version>3.0.2</version>
 				</plugin>
 				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>native2ascii-maven-plugin</artifactId>
+					<version>1.0-beta-1</version>
+					<executions>
+					<execution>
+					<id>native2ascii-utf8-resources</id>
+					<goals>
+					<goal>native2ascii</goal>
+					</goals>
+					<configuration>
+					<dest>${project.build.directory}/classes</dest>
+					<src>${project.resources[0].directory}</src>
+					<encoding>UTF-8</encoding>
+					</configuration>
+					</execution>
+					</executions>
+					</plugin>
+				<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.8.0</version>
 				</plugin>

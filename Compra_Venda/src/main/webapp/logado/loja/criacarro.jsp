@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> <%@ page isELIgnored="false"%> <%@ taglib
 uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
   <head>
-    <title>Gerenciamento</title>
+    <fmt:bundle basename="messages">
+    <title><fmt:message key="management"/></title>
     <style>
       body {
         background-image: url(${pageContext.request.contextPath}/img/audi.jpg);
@@ -14,9 +16,9 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
   </head>
   <body>
     <div align="center">
-      <h1><font color="white">Gerenciamento de Carro</font></h1>
+      <h1><font color="white"><fmt:message key="car-management"/></font></h1>
       <h2>
-        <a href="default">Lista de Carros</a>
+        <a href="default"><fmt:message key="car-list"/></a>
       </h2>
     </div>
     <div align="center">
@@ -41,4 +43,5 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
       </ul>
     </c:if>
   </body>
+</fmt:bundle>
 </html>

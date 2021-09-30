@@ -1,15 +1,18 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
+    <fmt:bundle basename="messages">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Autorização de Usuário</title>
+        <title><fmt:bundle basename="user-auth"></title>
         <link href="${pageContext.request.contextPath}/layout.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <h1>Autorização de Usuário</h1>
+        <fmt:bundle basename="messages">
+        <h1><fmt:message key="auth_user"/></h1>
         <c:if test="${mensagens.existeErros}">
             <div id="erro">
                 <ul>
@@ -19,5 +22,6 @@
                 </ul>
             </div>
         </c:if>
+    </fmt:bundle>
     </body>
 </html>
